@@ -41,8 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     if (isLoggedIn) {
-      print(isLoggedIn);
-
       return HomeScreen();
     }
 
