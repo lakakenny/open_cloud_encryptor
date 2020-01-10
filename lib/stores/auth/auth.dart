@@ -16,22 +16,22 @@ abstract class _AuthStore with Store {
   bool loading = false;
 
   @observable
-  int count = 0;
+  bool isLoggedIn = false;
 
   @action
-  Future inc() async {
+  Future doLogin() async {
     loading = true;
 
     Future.delayed(Duration(milliseconds: 2000)).then((future) {
-      count++;
+      isLoggedIn = true;
 
       loading = false;
       success = true;
     }).catchError((e) {
+      isLoggedIn = false;
+
       loading = false;
       success = false;
-
-      print(e);
     });
   }
 

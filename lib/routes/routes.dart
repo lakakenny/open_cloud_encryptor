@@ -1,3 +1,4 @@
+import 'package:open_cloud_encryptor/ui/login/login.dart';
 import 'package:open_cloud_encryptor/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -7,13 +8,13 @@ class Routes {
   Routes._();
 
   //static variables
+  static const String splash = '/';
+  static const String login = '/login';
   static const String home = '/home';
-  static const String splash = '/splash';
 
   static final routes = <String, WidgetBuilder>{
     splash: (BuildContext context) => SplashScreen(),
-    home: (BuildContext context) => HomeScreen(
-          title: "OpenCloudEncryptor",
-        ),
+    login: (BuildContext context) => LoginScreen(),
+    home: (BuildContext context) => HomeScreen(),
   };
 }

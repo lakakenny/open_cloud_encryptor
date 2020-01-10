@@ -43,27 +43,27 @@ mixin _$AuthStore on _AuthStore, Store {
     }, _$loadingAtom, name: '${_$loadingAtom.name}_set');
   }
 
-  final _$countAtom = Atom(name: '_AuthStore.count');
+  final _$isLoggedInAtom = Atom(name: '_AuthStore.isLoggedIn');
 
   @override
-  int get count {
-    _$countAtom.context.enforceReadPolicy(_$countAtom);
-    _$countAtom.reportObserved();
-    return super.count;
+  bool get isLoggedIn {
+    _$isLoggedInAtom.context.enforceReadPolicy(_$isLoggedInAtom);
+    _$isLoggedInAtom.reportObserved();
+    return super.isLoggedIn;
   }
 
   @override
-  set count(int value) {
-    _$countAtom.context.conditionallyRunInAction(() {
-      super.count = value;
-      _$countAtom.reportChanged();
-    }, _$countAtom, name: '${_$countAtom.name}_set');
+  set isLoggedIn(bool value) {
+    _$isLoggedInAtom.context.conditionallyRunInAction(() {
+      super.isLoggedIn = value;
+      _$isLoggedInAtom.reportChanged();
+    }, _$isLoggedInAtom, name: '${_$isLoggedInAtom.name}_set');
   }
 
-  final _$incAsyncAction = AsyncAction('inc');
+  final _$doLoginAsyncAction = AsyncAction('doLogin');
 
   @override
-  Future inc() {
-    return _$incAsyncAction.run(() => super.inc());
+  Future doLogin() {
+    return _$doLoginAsyncAction.run(() => super.doLogin());
   }
 }

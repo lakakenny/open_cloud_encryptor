@@ -1,7 +1,11 @@
 import 'dart:async';
 
-import 'package:open_cloud_encryptor/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:open_cloud_encryptor/stores/auth/auth.dart';
+import 'package:open_cloud_encryptor/ui/home/home.dart';
+import 'package:open_cloud_encryptor/ui/login/login.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,25 +13,54 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  // final AuthStore auth = AuthStore();
+  bool showSplash = true;
+
   @override
   void initState() {
     super.initState();
-    startTimer();
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      child: Center(child: Text("OpenCloudEncryptor")),
-    );
+    startTimer();
   }
 
   startTimer() {
     var _duration = Duration(milliseconds: 1000);
-    return Timer(_duration, navigate);
+
+    return Timer(_duration, initApp);
   }
 
-  navigate() async {
-    Navigator.of(context).pushReplacementNamed(Routes.home);
+  initApp() async {
+    this.setState(() {
+      showSplash = false;
+    });
+  }
+
+  Widget buildFirstScreen(BuildContext context, bool isLoggedIn) {
+    if (showSplash) {
+      return Center(child: Text("OpenCloudEncryptor"));
+    }
+
+    if (isLoggedIn) {
+      print(isLoggedIn);
+
+      return HomeScreen();
+    }
+
+    return LoginScreen();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final auth = Provider.of<AuthStore>(context);
+
+    return Material(
+      child: Observer(
+        builder: (BuildContext _context) {
+          var isLoggedIn = auth.isLoggedIn;
+
+          return buildFirstScreen(_context, isLoggedIn);
+        },
+      ),
+    );
   }
 }
