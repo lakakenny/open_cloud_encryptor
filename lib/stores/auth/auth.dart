@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:open_cloud_encryptor/utils/log_it/log_it.dart';
 
 part 'auth.g.dart';
 
@@ -32,6 +33,8 @@ abstract class _AuthStore with Store {
 
       loading = false;
       success = false;
+
+      LogIt.error(e, 'doLogin');
     });
   }
 
