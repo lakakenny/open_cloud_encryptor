@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                 // auth.inc();
               },
               child: Text(
-                "Do something!",
+                'Do something!',
               ),
             ),
           ],

@@ -13,13 +13,23 @@ void main() {
 
 @provide
 class App extends StatelessWidget {
+  void setErrorBuilder() {
+    ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+      return Scaffold(body: Center(child: Text('Oops.. Some error occured.')));
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [Provider<AuthStore>(create: (_) => AuthStore())],
         child: MaterialApp(
+          builder: (BuildContext context, Widget widget) {
+            setErrorBuilder();
+            return widget;
+          },
           debugShowCheckedModeBanner: false,
-          title: Strings.APP_NAME,
+          title: APP_NAME,
           theme: themeData,
           routes: Routes.routes,
           initialRoute: '/',

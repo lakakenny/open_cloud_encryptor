@@ -22,9 +22,7 @@ class LoginScreen extends StatelessWidget {
                 auth.doLogin();
               },
               child: Observer(
-                builder: (_) => Text(
-                  auth.isLoggedIn ? "Logged in" : "Login!",
-                ),
+                builder: (_) => Text('Login'),
               ),
             ),
           ],

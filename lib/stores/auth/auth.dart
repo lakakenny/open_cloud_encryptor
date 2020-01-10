@@ -28,6 +28,8 @@ abstract class _AuthStore with Store {
 
       loading = false;
       success = true;
+
+      LogIt.error('e', 'doLogin');
     }).catchError((e) {
       isLoggedIn = false;
 

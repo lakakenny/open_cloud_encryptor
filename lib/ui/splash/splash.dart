@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:open_cloud_encryptor/constants/strings.dart';
 import 'package:open_cloud_encryptor/stores/auth/auth.dart';
 import 'package:open_cloud_encryptor/ui/home/home.dart';
 import 'package:open_cloud_encryptor/ui/login/login.dart';
@@ -37,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget buildFirstScreen(BuildContext context, bool isLoggedIn) {
     if (showSplash) {
-      return Center(child: Text("OpenCloudEncryptor"));
+      return Center(child: Text(APP_NAME));
     }
 
     if (isLoggedIn) {
