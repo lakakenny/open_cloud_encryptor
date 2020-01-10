@@ -1,0 +1,33 @@
+import 'dart:async';
+
+import 'package:open_cloud_encryptor/routes/routes.dart';
+import 'package:flutter/material.dart';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Center(child: Text("OpenCloudEncryptor")),
+    );
+  }
+
+  startTimer() {
+    var _duration = Duration(milliseconds: 1000);
+    return Timer(_duration, navigate);
+  }
+
+  navigate() async {
+    Navigator.of(context).pushReplacementNamed(Routes.home);
+  }
+}
