@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart' as Foundation;
+import 'package:flutter/foundation.dart' as foundation;
 
-const bool IS_PROD = Foundation.kReleaseMode;
+const bool IS_RELEASE = foundation.kReleaseMode;
 
-const bool IS_DEV = !Foundation.kReleaseMode;
+const bool IS_DEBUG = !foundation.kReleaseMode;

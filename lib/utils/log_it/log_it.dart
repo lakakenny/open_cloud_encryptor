@@ -1,25 +1,31 @@
-import 'package:flutter/foundation.dart' as Foundation;
+import 'dart:developer' as developer;
 import 'package:open_cloud_encryptor/constants/env.dart';
 
 class LogIt {
   LogIt._();
 
-  static void error(dynamic message, [String title, bool allowInProd = false]) {
-    if (allowInProd || !IS_PROD) {
-      Foundation.debugPrint('Error thrown:');
+  static void error(String message, [String title, bool allowInProd = false]) {
+    if (allowInProd || !IS_RELEASE) {
+      developer.log('Error thrown:');
       if (title.isNotEmpty) {
-        Foundation.debugPrint('"$title"');
+        developer.log(message, name: title);
+
+        return;
       }
-      Foundation.debugPrint(message);
+
+      developer.log(message);
     }
   }
 
-  static void info(dynamic message, [String title, bool allowInProd = false]) {
-    if (allowInProd || !IS_PROD) {
+  static void info(String message, [String title, bool allowInProd = false]) {
+    if (allowInProd || !IS_RELEASE) {
       if (title.isNotEmpty) {
-        Foundation.debugPrint('$title =>');
+        developer.log(message, name: title);
+
+        return;
       }
-      Foundation.debugPrint(message);
+
+      developer.log(message);
     }
   }
 }

@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Container(
+            Container(
               child: Text('Home page', style: TextStyle(fontSize: 18)),
               padding: const EdgeInsets.all(8),
             ),

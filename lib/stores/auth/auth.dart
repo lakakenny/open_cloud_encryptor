@@ -23,13 +23,11 @@ abstract class _AuthStore with Store {
   Future doLogin() async {
     loading = true;
 
-    Future.delayed(Duration(milliseconds: 2000)).then((future) {
+    await Future.delayed(Duration(milliseconds: 2000)).then((future) {
       isLoggedIn = true;
 
       loading = false;
       success = true;
-
-      LogIt.error('e', 'doLogin');
     }).catchError((e) {
       isLoggedIn = false;
 

@@ -24,14 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
     startTimer();
   }
 
-  startTimer() {
+  Timer startTimer() {
     var _duration = Duration(milliseconds: 1000);
 
     return Timer(_duration, initApp);
   }
 
-  initApp() async {
-    this.setState(() {
+  void initApp() async {
+    setState(() {
       showSplash = false;
     });
   }
