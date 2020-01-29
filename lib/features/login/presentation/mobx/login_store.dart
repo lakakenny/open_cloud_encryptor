@@ -11,7 +11,11 @@ class LoginStore extends _LoginStore with _$LoginStore {
   LoginStore(GetLogin getLogin) : super(getLogin);
 }
 
-enum StoreState { initial, loading, loaded }
+enum StoreState {
+  initial,
+  loading,
+  loaded,
+}
 
 abstract class _LoginStore with Store {
   // disposers
@@ -63,13 +67,6 @@ abstract class _LoginStore with Store {
         return Errors.CACHE_FAILURE_MESSAGE;
       default:
         return 'Unexpected error';
-    }
-  }
-
-  // general methods:-----------------------------------------------------------
-  void dispose() {
-    for (final d in _disposers) {
-      d();
     }
   }
 }
