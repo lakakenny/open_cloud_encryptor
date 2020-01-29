@@ -1,3 +1,4 @@
+import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/core/errors/failures.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/core/use_cases/use_cases.dart';
@@ -6,15 +7,16 @@ import 'package:open_cloud_encryptor/features/login/domain/use_cases/get_login.d
 
 part 'login_store.g.dart';
 
-/*class LoginStore extends _LoginStore with _$LoginStore {
+class LoginStore extends _LoginStore with _$LoginStore {
   LoginStore(GetLogin getLogin) : super(getLogin);
-}*/
-
-class LoginStore = _LoginStore with _$LoginStore;
+}
 
 enum StoreState { initial, loading, loaded }
 
 abstract class _LoginStore with Store {
+  // disposers
+  List<ReactionDisposer> _disposers;
+
   final GetLogin _getLogin;
 
   _LoginStore(this._getLogin);
@@ -23,7 +25,7 @@ abstract class _LoginStore with Store {
   ObservableFuture<Login> _loginFuture;
 
   @observable
-  Login email;
+  bool isLoggedIn = false;
 
   @observable
   String errorMessage;
@@ -48,7 +50,7 @@ abstract class _LoginStore with Store {
         errorMessage = _mapFailureToMessage(failure);
       },
       (res) {
-        email = res.email as Login;
+        isLoggedIn = res.email.isNotEmpty;
       },
     );
   }
@@ -56,11 +58,18 @@ abstract class _LoginStore with Store {
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return 'SERVER_FAILURE_MESSAGE';
+        return Errors.SERVER_FAILURE_MESSAGE;
       case CacheFailure:
-        return 'CACHE_FAILURE_MESSAGE';
+        return Errors.CACHE_FAILURE_MESSAGE;
       default:
         return 'Unexpected error';
+    }
+  }
+
+  // general methods:-----------------------------------------------------------
+  void dispose() {
+    for (final d in _disposers) {
+      d();
     }
   }
 }

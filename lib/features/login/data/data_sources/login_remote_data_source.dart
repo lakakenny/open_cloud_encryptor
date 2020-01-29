@@ -22,32 +22,40 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
 
   @override
   Future<LoginModel> getLogin() async {
-    final response =
-        await client.get('http://localhost:8080/getLogin', headers: {
-      'Content-Type': 'application/json',
-    });
+    try {
+      final response =
+          await client.get('http://localhost:8080/getLogin', headers: {
+        'Content-Type': 'application/json',
+      });
 
-    if (response.statusCode != 200) {
+      if (response.statusCode != 200) {
+        throw ServerException();
+      }
+
+      return LoginModel.fromJson(json.decode(response.body));
+    } catch (_) {
       throw ServerException();
     }
-
-    return LoginModel.fromJson(json.decode(response.body));
   }
 
   @override
   Future<LoginModel> postLogin(String username, String password) async {
-    final response =
-        await client.post('http://localhost:8080/doLogin', headers: {
-      'Content-Type': 'application/json',
-    }, body: {
-      username,
-      password
-    });
+    try {
+      final response =
+          await client.post('http://localhost:8080/doLogin', headers: {
+        'Content-Type': 'application/json',
+      }, body: {
+        username,
+        password
+      });
 
-    if (response.statusCode != 200) {
+      if (response.statusCode != 200) {
+        throw ServerException();
+      }
+
+      return LoginModel.fromJson(json.decode(response.body));
+    } catch (_) {
       throw ServerException();
     }
-
-    return LoginModel.fromJson(json.decode(response.body));
   }
 }

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
-import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_state.dart';
 import 'package:open_cloud_encryptor/features/home/presentation/pages/home.dart';
+import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_store.dart';
 import 'package:open_cloud_encryptor/features/login/presentation/pages/login.dart';
 import 'package:provider/provider.dart';
 
@@ -49,12 +49,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<LoginState>(context);
+    final login = Provider.of<LoginStore>(context);
 
     return Material(
       child: Observer(
         builder: (BuildContext _context) {
-          var isLoggedIn = auth.isLoggedIn;
+          var isLoggedIn = login.isLoggedIn;
 
           return buildFirstScreen(_context, isLoggedIn);
         },

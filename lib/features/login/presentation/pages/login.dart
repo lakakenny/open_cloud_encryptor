@@ -22,7 +22,10 @@ class LoginScreen extends StatelessWidget {
                 login.doLogin();
               },
               child: Observer(
-                builder: (_) => Text('Login'),
+                builder: (_) {
+                  // @todo no Observables
+                  return Text('Login');
+                },
               ),
             ),
           ],

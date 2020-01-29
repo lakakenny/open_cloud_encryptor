@@ -7,7 +7,7 @@ class LogIt {
   static void error(String message, [String title, bool allowInProd = false]) {
     if (allowInProd || !Env.IS_RELEASE) {
       developer.log('Error thrown:');
-      if (title.isNotEmpty) {
+      if (title != null && title.isNotEmpty) {
         developer.log(message, name: title);
 
         return;
@@ -19,7 +19,7 @@ class LogIt {
 
   static void info(String message, [String title, bool allowInProd = false]) {
     if (allowInProd || !Env.IS_RELEASE) {
-      if (title.isNotEmpty) {
+      if (title != null && title.isNotEmpty) {
         developer.log(message, name: title);
 
         return;
