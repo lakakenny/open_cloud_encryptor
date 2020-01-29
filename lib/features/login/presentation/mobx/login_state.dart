@@ -3,7 +3,7 @@ import 'package:open_cloud_encryptor/core/utils/log_it/log_it.dart';
 
 part 'login_state.g.dart';
 
-class LoginState = _LoginState with _$LoginState;
+class GoginState = _LoginState with _$LoginState;
 
 abstract class _LoginState with Store {
   // disposers

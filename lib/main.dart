@@ -1,8 +1,9 @@
-import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_state.dart';
 import 'package:open_cloud_encryptor/core/routes/routes.dart';
 import 'package:open_cloud_encryptor/constants/app_theme.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:open_cloud_encryptor/features/login/domain/use_cases/get_login.dart';
+import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_store.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -19,7 +20,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [Provider<LoginState>(create: (_) => LoginState())],
+        providers: [
+          Provider<LoginStore>(
+            create: (_) => LoginStore(GetLogin ),
+          )
+        ],
         child: MaterialApp(
           builder: (BuildContext context, Widget widget) {
             setErrorBuilder();
