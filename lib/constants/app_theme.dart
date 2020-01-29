@@ -24,7 +24,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._(); // this basically makes it so you can instantiate this class
 
-  static const Map<int, Color> green = <int, Color>{
+  static const Map<int, Color> GREEN = <int, Color>{
     50: Color(0xFFf2f8ef),
     100: Color(0xFFdfedd8),
     200: Color(0xFFc9e2be),
@@ -41,8 +41,8 @@ class AppColors {
 final ThemeData themeData = ThemeData(
     fontFamily: 'ProductSans',
     brightness: Brightness.light,
-    primarySwatch: MaterialColor(AppColors.green[500].value, AppColors.green),
-    primaryColor: AppColors.green[500],
+    primarySwatch: MaterialColor(AppColors.GREEN[500].value, AppColors.GREEN),
+    primaryColor: AppColors.GREEN[500],
     primaryColorBrightness: Brightness.light,
-    accentColor: AppColors.green[500],
+    accentColor: AppColors.GREEN[500],
     accentColorBrightness: Brightness.light);

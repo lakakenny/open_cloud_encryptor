@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget buildFirstScreen(BuildContext context, bool isLoggedIn) {
     if (showSplash) {
-      return Center(child: Text(APP_NAME));
+      return Center(child: Text(Strings.APP_NAME));
     }
 
     if (isLoggedIn) {

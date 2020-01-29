@@ -1,11 +1,10 @@
 import 'package:open_cloud_encryptor/stores/auth/auth.dart';
-import 'package:open_cloud_encryptor/routes/routes.dart';
+import 'package:open_cloud_encryptor/core/routes/routes.dart';
+import 'package:open_cloud_encryptor/constants/app_theme.dart';
+import 'package:open_cloud_encryptor/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:inject/inject.dart';
 import 'package:provider/provider.dart';
-
-import 'constants/app_theme.dart';
-import 'constants/strings.dart';
 
 void main() {
   runApp(App());
@@ -29,7 +28,7 @@ class App extends StatelessWidget {
             return widget;
           },
           debugShowCheckedModeBanner: false,
-          title: APP_NAME,
+          title: Strings.APP_NAME,
           theme: themeData,
           routes: Routes.routes,
           initialRoute: '/',

@@ -1,5 +1,9 @@
 import 'package:flutter/foundation.dart' as foundation;
 
-const bool IS_RELEASE = foundation.kReleaseMode;
+class Env {
+  Env._();
 
-const bool IS_DEBUG = !foundation.kReleaseMode;
+  static final bool IS_RELEASE = foundation.kReleaseMode;
+
+  static final bool IS_DEBUG = !foundation.kReleaseMode;
+}

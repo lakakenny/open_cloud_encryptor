@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:open_cloud_encryptor/utils/log_it/log_it.dart';
+import 'package:open_cloud_encryptor/core/utils/log_it/log_it.dart';
 
 part 'auth.g.dart';
 

@@ -1,8 +1,7 @@
 import 'package:open_cloud_encryptor/ui/login/login.dart';
+import 'package:open_cloud_encryptor/ui/home/home.dart';
 import 'package:open_cloud_encryptor/ui/splash/splash.dart';
 import 'package:flutter/material.dart';
-
-import '../ui/home/home.dart';
 
 class Routes {
   Routes._();

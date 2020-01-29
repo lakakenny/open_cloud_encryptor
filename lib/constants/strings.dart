@@ -1,1 +1,5 @@
-const String APP_NAME = 'OpenCloudEncryptor';
+class Strings {
+  Strings._();
+
+  static final String APP_NAME = 'OpenCloudEncryptor';
+}
