@@ -270,24 +270,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.4"
-  inject:
-    dependency: "direct main"
-    description:
-      path: "package/inject"
-      ref: "7c3cbf6"
-      resolved-ref: "7c3cbf6a4da2bc8357152b9c7bbcb9891cbfa320"
-      url: "https://github.com/google/inject.dart.git"
-    source: git
-    version: "1.0.0-alpha"
-  inject_generator:
-    dependency: "direct dev"
-    description:
-      path: "package/inject_generator"
-      ref: "7c3cbf6"
-      resolved-ref: "7c3cbf6a4da2bc8357152b9c7bbcb9891cbfa320"
-      url: "https://github.com/google/inject.dart.git"
-    source: git
-    version: "1.0.0-alpha"
   io:
     dependency: transitive
     description:
@@ -309,13 +291,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  json_serializable:
-    dependency: "direct dev"
-    description:
-      name: json_serializable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.2.5"
   logging:
     dependency: transitive
     description:
@@ -352,7 +327,7 @@ packages:
     source: hosted
     version: "0.3.10"
   mobx_codegen:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: mobx_codegen
       url: "https://pub.dartlang.org"
