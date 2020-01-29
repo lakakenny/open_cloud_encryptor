@@ -1,5 +1,5 @@
 {
-  "asset": "asset:open_cloud_encryptor/lib/widgets/app_icon_widget.dart",
+  "asset": "asset:open_cloud_encryptor/lib/core/widgets/app_icon_widget.dart",
   "summary": {
     "injector": [],
     "module": [],

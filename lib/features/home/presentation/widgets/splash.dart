@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
-import 'package:open_cloud_encryptor/stores/auth/auth.dart';
-import 'package:open_cloud_encryptor/ui/home/home.dart';
-import 'package:open_cloud_encryptor/ui/login/login.dart';
+import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_state.dart';
+import 'package:open_cloud_encryptor/features/home/presentation/pages/home.dart';
+import 'package:open_cloud_encryptor/features/login/presentation/pages/login.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // final AuthStore auth = AuthStore();
   bool showSplash = true;
 
   @override
@@ -50,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthStore>(context);
+    final auth = Provider.of<LoginState>(context);
 
     return Material(
       child: Observer(

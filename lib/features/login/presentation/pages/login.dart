@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:open_cloud_encryptor/stores/auth/auth.dart';
+import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_state.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthStore>(context);
+    final auth = Provider.of<LoginState>(context);
 
     return Scaffold(
       body: Center(

@@ -1,5 +1,5 @@
 {
-  "asset": "asset:open_cloud_encryptor/lib/utils/dio/dio_error_util.dart",
+  "asset": "asset:open_cloud_encryptor/lib/core/utils/dio/dio_error_util.dart",
   "summary": {
     "injector": [],
     "module": [],
