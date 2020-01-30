@@ -18,9 +18,6 @@ enum StoreState {
 }
 
 abstract class _LoginStore with Store {
-  // disposers
-  List<ReactionDisposer> _disposers;
-
   final GetLogin _getLogin;
 
   _LoginStore(this._getLogin);
@@ -39,6 +36,7 @@ abstract class _LoginStore with Store {
     if (_loginFuture == null || _loginFuture.status == FutureStatus.rejected) {
       return StoreState.initial;
     }
+
     return _loginFuture.status == FutureStatus.pending
         ? StoreState.loading
         : StoreState.loaded;
