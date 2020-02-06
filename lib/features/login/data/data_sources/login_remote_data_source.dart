@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:open_cloud_encryptor/core/errors/exception.dart';
+import 'package:open_cloud_encryptor/core/utils/dio/dio_client.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_model.dart';
-import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 abstract class LoginRemoteDataSource {
@@ -16,17 +16,16 @@ abstract class LoginRemoteDataSource {
 }
 
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
-  final http.Client client;
+  final DioClient client;
 
   LoginRemoteDataSourceImpl({@required this.client});
 
   @override
   Future<LoginModel> getLogin() async {
     try {
-      final response =
-          await client.get('http://localhost:8080/getLogin', headers: {
-        'Content-Type': 'application/json',
-      });
+      final response = await client.get(
+        'http://localhost:8080/getLogin',
+      );
 
       if (response.statusCode != 200) {
         throw ServerException();
@@ -42,11 +41,9 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
   Future<LoginModel> postLogin(String username, String password) async {
     try {
       final response =
-          await client.post('http://localhost:8080/doLogin', headers: {
-        'Content-Type': 'application/json',
-      }, body: {
+          await client.post('http://localhost:8080/doLogin', data: {
         username,
-        password
+        password,
       });
 
       if (response.statusCode != 200) {
