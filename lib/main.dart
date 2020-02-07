@@ -30,22 +30,23 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          Provider<LoginStore>(
-            create: (_) => sl<LoginStore>(),
-          )
-        ],
-        child: MaterialApp(
-          builder: (BuildContext context, Widget widget) {
-            setErrorBuilder();
+      providers: [
+        Provider<LoginStore>(
+          create: (_) => sl<LoginStore>(),
+        )
+      ],
+      child: MaterialApp(
+        builder: (BuildContext context, Widget widget) {
+          setErrorBuilder();
 
-            return widget;
-          },
-          debugShowCheckedModeBanner: false,
-          title: Strings.APP_NAME,
-          theme: themeData,
-          routes: Routes.routes,
-          initialRoute: '/',
-        ));
+          return widget;
+        },
+        debugShowCheckedModeBanner: false,
+        title: Strings.APP_NAME,
+        theme: themeData,
+        routes: Routes.routes,
+        initialRoute: '/',
+      ),
+    );
   }
 }
