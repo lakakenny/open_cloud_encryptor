@@ -5,8 +5,8 @@ import 'package:open_cloud_encryptor/core/errors/failures.dart';
 import 'package:open_cloud_encryptor/core/utils/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_remote_data_source.dart';
-import 'package:open_cloud_encryptor/features/login/domain/entities/login.dart';
-import 'package:open_cloud_encryptor/features/login/domain/repositories/login_repository.dart';
+import 'package:open_cloud_encryptor/features/login/data/models/login_entities.dart';
+import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginRemoteDataSource remoteDataSource;

@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:open_cloud_encryptor/features/login/domain/entities/login.dart';
+import 'package:open_cloud_encryptor/features/login/data/models/login_entities.dart';
 
 class LoginModel extends Login {
   LoginModel({

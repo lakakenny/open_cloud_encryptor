@@ -2,8 +2,8 @@ import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/core/errors/failures.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/core/use_cases/use_cases.dart';
-import 'package:open_cloud_encryptor/features/login/domain/entities/login.dart';
-import 'package:open_cloud_encryptor/features/login/domain/use_cases/get_login.dart';
+import 'package:open_cloud_encryptor/features/login/data/models/login_entities.dart';
+import 'package:open_cloud_encryptor/features/login/data/use_cases/get_login.dart';
 
 part 'login_store.g.dart';
 

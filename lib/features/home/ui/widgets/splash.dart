@@ -7,9 +7,9 @@ import 'package:mobx/mobx.dart';
 import 'package:meta/meta.dart';
 import 'package:provider/provider.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
-import 'package:open_cloud_encryptor/features/home/presentation/pages/home.dart';
-import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_store.dart';
-import 'package:open_cloud_encryptor/features/login/presentation/pages/login.dart';
+import 'package:open_cloud_encryptor/features/home/ui/pages/home.dart';
+import 'package:open_cloud_encryptor/features/login/data/mobx/login_store.dart';
+import 'package:open_cloud_encryptor/features/login/ui/pages/login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

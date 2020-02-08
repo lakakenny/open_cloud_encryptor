@@ -3,7 +3,7 @@ import 'package:open_cloud_encryptor/core/routes/routes.dart';
 import 'package:open_cloud_encryptor/constants/app_theme.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_store.dart';
+import 'package:open_cloud_encryptor/features/login/data/mobx/login_store.dart';
 import 'package:provider/provider.dart';
 import 'package:open_cloud_encryptor/injection_container.dart' as di;
 

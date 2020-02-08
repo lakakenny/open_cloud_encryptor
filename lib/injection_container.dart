@@ -3,13 +3,13 @@ import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:open_cloud_encryptor/core/utils/dio/dio_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:open_cloud_encryptor/features/login/presentation/mobx/login_store.dart';
+import 'package:open_cloud_encryptor/features/login/data/mobx/login_store.dart';
 import 'package:open_cloud_encryptor/core/utils/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_remote_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository_impl.dart';
-import 'package:open_cloud_encryptor/features/login/domain/repositories/login_repository.dart';
-import 'package:open_cloud_encryptor/features/login/domain/use_cases/get_login.dart';
+import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository.dart';
+import 'package:open_cloud_encryptor/features/login/data/use_cases/get_login.dart';
 
 final sl = GetIt.instance;
 
