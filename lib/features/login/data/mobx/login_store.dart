@@ -7,7 +7,7 @@ import 'package:open_cloud_encryptor/features/login/data/use_cases/get_login.dar
 
 part 'login_store.g.dart';
 
-class LoginStore extends _LoginStore with _$LoginStore {
+class LoginStore extends _LoginStoreBase with _$LoginStore {
   LoginStore(GetLogin getLogin) : super(getLogin);
 }
 
@@ -17,10 +17,10 @@ enum StoreState {
   loaded,
 }
 
-abstract class _LoginStore with Store {
+abstract class _LoginStoreBase with Store {
   final GetLogin _getLogin;
 
-  _LoginStore(this._getLogin);
+  _LoginStoreBase(this._getLogin);
 
   @observable
   ObservableFuture<Login> _loginFuture;

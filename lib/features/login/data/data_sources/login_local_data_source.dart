@@ -6,7 +6,7 @@ import 'package:open_cloud_encryptor/features/login/data/models/login_model.dart
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class LoginLocalDataSource {
+abstract class LoginLocalDataSourceBase {
   /// Gets the cached [LoginModel] which was gotten the last time
   /// the user had an internet connection.
   ///
@@ -16,10 +16,10 @@ abstract class LoginLocalDataSource {
   Future<void> doCacheLogin(LoginModel loginToCache);
 }
 
-class LoginLocalDataSourceImpl implements LoginLocalDataSource {
+class LoginLocalDataSource implements LoginLocalDataSourceBase {
   final SharedPreferences sharedPreferences;
 
-  LoginLocalDataSourceImpl({
+  LoginLocalDataSource({
     @required this.sharedPreferences,
   });
 

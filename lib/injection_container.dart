@@ -7,7 +7,6 @@ import 'package:open_cloud_encryptor/features/login/data/mobx/login_store.dart';
 import 'package:open_cloud_encryptor/core/utils/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_remote_data_source.dart';
-import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository_impl.dart';
 import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository.dart';
 import 'package:open_cloud_encryptor/features/login/data/use_cases/get_login.dart';
 
@@ -26,8 +25,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetLogin(sl()));
 
   // Repository
-  sl.registerLazySingleton<LoginRepository>(
-    () => LoginRepositoryImpl(
+  sl.registerLazySingleton<LoginRepositoryBase>(
+    () => LoginRepository(
       localDataSource: sl(),
       networkInfo: sl(),
       remoteDataSource: sl(),
@@ -35,15 +34,15 @@ Future<void> init() async {
   );
 
   // Data sources
-  sl.registerLazySingleton<LoginRemoteDataSource>(
-    () => LoginRemoteDataSourceImpl(client: sl()),
+  sl.registerLazySingleton<LoginRemoteDataSourceBase>(
+    () => LoginRemoteDataSource(client: sl()),
   );
 
-  sl.registerLazySingleton<LoginLocalDataSource>(
-    () => LoginLocalDataSourceImpl(sharedPreferences: sl()),
+  sl.registerLazySingleton<LoginLocalDataSourceBase>(
+    () => LoginLocalDataSource(sharedPreferences: sl()),
   );
 
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfoBase>(() => NetworkInfo(sl()));
 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();

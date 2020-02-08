@@ -8,14 +8,14 @@ part of 'login_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$LoginStore on _LoginStore, Store {
+mixin _$LoginStore on _LoginStoreBase, Store {
   Computed<StoreState> _$stateComputed;
 
   @override
   StoreState get state =>
       (_$stateComputed ??= Computed<StoreState>(() => super.state)).value;
 
-  final _$_loginFutureAtom = Atom(name: '_LoginStore._loginFuture');
+  final _$_loginFutureAtom = Atom(name: '_LoginStoreBase._loginFuture');
 
   @override
   ObservableFuture<Login> get _loginFuture {
@@ -32,7 +32,7 @@ mixin _$LoginStore on _LoginStore, Store {
     }, _$_loginFutureAtom, name: '${_$_loginFutureAtom.name}_set');
   }
 
-  final _$isLoggedInAtom = Atom(name: '_LoginStore.isLoggedIn');
+  final _$isLoggedInAtom = Atom(name: '_LoginStoreBase.isLoggedIn');
 
   @override
   bool get isLoggedIn {
@@ -49,7 +49,7 @@ mixin _$LoginStore on _LoginStore, Store {
     }, _$isLoggedInAtom, name: '${_$isLoggedInAtom.name}_set');
   }
 
-  final _$errorMessageAtom = Atom(name: '_LoginStore.errorMessage');
+  final _$errorMessageAtom = Atom(name: '_LoginStoreBase.errorMessage');
 
   @override
   String get errorMessage {

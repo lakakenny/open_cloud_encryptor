@@ -5,7 +5,7 @@ import 'package:open_cloud_encryptor/features/login/data/models/login_entities.d
 import 'package:open_cloud_encryptor/features/login/data/repositories/login_repository.dart';
 
 class GetLogin implements UseCases<Login, NoParams> {
-  final LoginRepository repository;
+  final LoginRepositoryBase repository;
 
   GetLogin(this.repository);
 

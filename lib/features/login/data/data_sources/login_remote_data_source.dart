@@ -5,7 +5,7 @@ import 'package:open_cloud_encryptor/core/utils/dio/dio_client.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_model.dart';
 import 'package:meta/meta.dart';
 
-abstract class LoginRemoteDataSource {
+abstract class LoginRemoteDataSourceBase {
   /// calls the end point
   /// Throws [ServerException] for all error codes
   Future<LoginModel> getLogin();
@@ -15,10 +15,10 @@ abstract class LoginRemoteDataSource {
   Future<LoginModel> postLogin(String username, String password);
 }
 
-class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
+class LoginRemoteDataSource implements LoginRemoteDataSourceBase {
   final DioClient client;
 
-  LoginRemoteDataSourceImpl({@required this.client});
+  LoginRemoteDataSource({@required this.client});
 
   @override
   Future<LoginModel> getLogin() async {
