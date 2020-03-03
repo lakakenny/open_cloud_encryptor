@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
-import 'package:open_cloud_encryptor/features/auth/data/models/auth_model.dart';
+import 'package:open_cloud_encryptor/features/auth/data/models/auth_token_model.dart';
 import 'package:open_cloud_encryptor/features/auth/data/models/auth_token_response.dart';
 
 abstract class AuthApiBase {
-  Future<AuthModel> getAuth();
+  Future<AuthTokenModel> getAuthTokenId();
 }
 
 @lazySingleton
@@ -14,9 +14,9 @@ class AuthApi extends AuthApiBase {
   AuthApi(this._apiClient);
 
   @override
-  Future<AuthModel> getAuth() async {
+  Future<AuthTokenModel> getAuthTokenId() async {
     final response = await _apiClient.get('');
 
-    return AuthModel.fromJson(response.data);
+    return AuthTokenModel.fromJson(response.data);
   }
 }

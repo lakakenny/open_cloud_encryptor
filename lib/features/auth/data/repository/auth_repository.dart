@@ -1,12 +1,19 @@
 import 'package:injectable/injectable.dart';
+import 'package:open_cloud_encryptor/common/errors/exceptions.dart';
 import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/auth/data/api/auth_api.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:open_cloud_encryptor/features/auth/data/models/auth_model.dart';
+import 'package:open_cloud_encryptor/features/auth/data/models/auth_permission_model.dart';
+import 'package:open_cloud_encryptor/features/auth/data/models/auth_token_model.dart';
 
 abstract class AuthRepositoryBase {
-  Future<AuthModel> getAuth();
+  Future<AuthPermissionModel> getAuthPermission();
+
+  Future<AuthTokenModel> getAuthTokenId();
+
+  // @todo remove this
+  Future<AuthTokenModel> getAuthTokenIdFromRemote();
 }
 
 @lazySingleton
@@ -21,12 +28,24 @@ class AuthRepository extends AuthRepositoryBase {
     this._networkInfo,
   );
 
-  @override
-  Future<AuthModel> getAuth() async {
-    if (await _networkInfo.isConnected) {
-      return _authRemoteDataSource.getAuth();
-    }
+  // todo init -> fetch token from url -> validate -> refresh
 
-    return _authLocalDataSource.getAuth();
+  @override
+  Future<AuthPermissionModel> getAuthPermission() async {
+    var tokenData = await getAuthTokenId();
+
+    // todo validate token
+    return AuthPermissionModel(
+        isAuthenticated: tokenData.token != null && tokenData.token.isNotEmpty);
+  }
+
+  @override
+  Future<AuthTokenModel> getAuthTokenId() async {
+    return _authLocalDataSource.getAuthTokenId();
+  }
+
+  @override
+  Future<AuthTokenModel> getAuthTokenIdFromRemote() {
+    return _authRemoteDataSource.getAuthTokenId();
   }
 }

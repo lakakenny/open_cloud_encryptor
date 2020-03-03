@@ -1,14 +1,14 @@
 import 'package:meta/meta.dart';
 
-class AuthModel {
+class AuthTokenModel {
   final String token;
 
-  AuthModel({
+  AuthTokenModel({
     @required this.token,
   });
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
+  factory AuthTokenModel.fromJson(Map<String, dynamic> json) {
+    return AuthTokenModel(
       token: json['token'],
     );
   }

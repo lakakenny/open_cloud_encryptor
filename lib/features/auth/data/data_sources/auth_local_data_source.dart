@@ -2,38 +2,39 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/features/auth/data/models/auth_model.dart';
+import 'package:open_cloud_encryptor/constants/shared_preferences_keys.dart';
+import 'package:open_cloud_encryptor/features/auth/data/models/auth_token_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthLocalDataSourceBase {
-  Future<AuthModel> getAuth();
+  Future<AuthTokenModel> getAuthTokenId();
 
-  Future<void> cacheLogin(AuthModel authModel);
+  Future<void> cacheLogin(AuthTokenModel AuthTokenModel);
 }
 
 @lazySingleton
 class AuthLocalDataSource extends AuthLocalDataSourceBase {
-  final Future<SharedPreferences> sharedPreferences =
-      SharedPreferences.getInstance();
+  final Future<SharedPreferences> sharedPreferences;
 
-  AuthLocalDataSource();
-
-  // @todo
-  //AuthLocalDataSource(this.sharedPreferences);
+  AuthLocalDataSource(this.sharedPreferences);
 
   @override
-  Future<AuthModel> getAuth() async {
+  Future<AuthTokenModel> getAuthTokenId() async {
     final pref = await sharedPreferences;
-    final tokenData = pref.getString('token_data'); //@todo string
+    final json = pref.getString(SharedPreferencesKeys.AUTH_TOKEN);
 
-    return Future.value(AuthModel.fromJson(jsonDecode(tokenData)));
+    if (json != null) {
+      return Future.value(AuthTokenModel.fromJson(jsonDecode(json)));
+    }
+
+    return Future.value(AuthTokenModel(token: null));
   }
 
   @override
-  Future<void> cacheLogin(AuthModel authModel) async {
+  Future<void> cacheLogin(AuthTokenModel AuthTokenModel) async {
     final pref = await sharedPreferences;
-    final tokenData = jsonEncode(authModel.toJson());
+    final tokenData = jsonEncode(AuthTokenModel.toJson());
 
-    return pref.setString('token_data', tokenData); //@todo string
+    return pref.setString(SharedPreferencesKeys.AUTH_TOKEN, tokenData);
   }
 }

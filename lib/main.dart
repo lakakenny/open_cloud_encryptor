@@ -7,11 +7,11 @@ import 'package:open_cloud_encryptor/features/auth/data/repository/auth_reposito
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Env.init();
-  di.init();
+  await di.init();
 
   runApp(App());
 
-/*  var repo = di.getIt<AuthRepository>();
+  var repo = di.getIt<AuthRepository>();
 
-  await repo.getAuth();*/
+  print(await repo.getAuthTokenIdFromRemote());
 }
