@@ -5,7 +5,7 @@ void main() {
   //var am = AuthModel(token: "there-you-go");
 
   //var ar = AuthTokenResponse.fromJson({});
-  setupDi();
+  //setupDi();
 
  // var api = ApiClient();
 }

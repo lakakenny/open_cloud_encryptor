@@ -5,4 +5,4 @@ import 'package:open_cloud_encryptor/common/di/di.iconfig.dart';
 final getIt = GetIt.instance;
 
 @injectableInit
-void setupDi() => $initGetIt(getIt);
+void init() => $initGetIt(getIt);
