@@ -73,7 +73,7 @@ dev_dependencies:
   #      path: package/inject_generator
   #      ref: 7c3cbf6
 
-  injectable_generator: ^0.2.4
+  injectable_generator: 0.2.3
 
   # MobX
   mobx_codegen: ^0.3.10+1

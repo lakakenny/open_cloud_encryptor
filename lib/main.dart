@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
-import 'package:open_cloud_encryptor/common/env.dart';
+import 'package:open_cloud_encryptor/constants/env.dart';
 import 'package:open_cloud_encryptor/features/app/ui/pages/app.dart';
 import 'package:open_cloud_encryptor/features/auth/data/repository/auth_repository.dart';
 

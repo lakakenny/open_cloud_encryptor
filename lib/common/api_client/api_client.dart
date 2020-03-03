@@ -1,20 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/common/api_client/dio_di.dart';
-import 'package:open_cloud_encryptor/common/di/di.dart';
-
-import 'package:open_cloud_encryptor/common/env.dart';
+import 'package:open_cloud_encryptor/constants/env.dart';
 
 //@todo
-@injectable
 @lazySingleton
 class ApiClient {
-  final Dio _dio = getIt<DioDi>().dio;
+  final Dio dio;
 
-  ApiClient() {
-    _dio.options.baseUrl = Env.data.apiBaseUrl;
-    _dio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
-    _dio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
+  ApiClient(this.dio) {
+    dio.options.baseUrl = Env.data.apiBaseUrl;
+    dio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
+    dio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
     /*
    _dio.interceptors.add(InternalServerErrorInterceptor());
    _dio.interceptors.add(AuthInterceptor());
@@ -22,7 +18,7 @@ class ApiClient {
     _dio.interceptors.add(BadRequestInterceptor());
 */
     if (Env.data.debugApiClient) {
-      _dio.interceptors.add(LogInterceptor(
+      dio.interceptors.add(LogInterceptor(
         requestHeader: true,
         requestBody: true,
         responseHeader: true,
@@ -71,7 +67,7 @@ class ApiClient {
   }*/
 
   Future<Response> get(String path) async {
-    return await _dio.get(path);
+    return await dio.get(path);
 
     /*try {
       return await _dio.get(path);

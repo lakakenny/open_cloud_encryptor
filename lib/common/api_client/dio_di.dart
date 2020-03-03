@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
-@lazySingleton
-class DioDi {
+@registerModule
+abstract class DioDi {
+  @lazySingleton
   Dio get dio => Dio();
-
-  DioDi();
 }
