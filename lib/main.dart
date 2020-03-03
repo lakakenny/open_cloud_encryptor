@@ -14,5 +14,5 @@ void main() async {
 
   var repo = getIt<AuthRepository>();
 
-  await repo.getLogin();
+  await repo.getAuth();
 }

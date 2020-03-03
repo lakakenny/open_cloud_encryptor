@@ -5,8 +5,12 @@ import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:open_cloud_encryptor/features/auth/data/models/auth_model.dart';
 
+abstract class AuthRepositoryBase {
+  Future<AuthModel> getAuth();
+}
+
 @lazySingleton
-class AuthRepository {
+class AuthRepository extends AuthRepositoryBase {
   final AuthLocalDataSource _authLocalDataSource;
   final AuthRemoteDataSource _authRemoteDataSource;
   final NetworkInfo _networkInfo;
@@ -17,11 +21,12 @@ class AuthRepository {
     this._networkInfo,
   );
 
-  Future<AuthModel> getLogin() async {
+  @override
+  Future<AuthModel> getAuth() async {
     if (await _networkInfo.isConnected) {
-      return _authRemoteDataSource.getLogin();
+      return _authRemoteDataSource.getAuth();
     }
 
-    return _authLocalDataSource.getLogin();
+    return _authLocalDataSource.getAuth();
   }
 }

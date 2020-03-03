@@ -5,6 +5,8 @@
 // **************************************************************************
 
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:open_cloud_encryptor/common/local_storage/shared_preferences_di.dart';
 import 'package:dio/dio.dart';
 import 'package:open_cloud_encryptor/common/api_client/dio_di.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
@@ -16,10 +18,13 @@ import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/auth/data/repository/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 
-void $initGetIt(GetIt g, {String environment}) {
+Future<void> $initGetIt(GetIt g, {String environment}) async {
+  final sharedPreferencesDi = _$SharedPreferencesDi();
   final dioDi = _$DioDi();
   final networkInfoDi = _$NetworkInfoDi();
   g.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSource());
+  final sharedPreferences = await sharedPreferencesDi.sharedPreferences;
+  g.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   g.registerLazySingleton<Dio>(() => dioDi.dio);
   g.registerLazySingleton<ApiClient>(() => ApiClient(
         g<Dio>(),
@@ -41,6 +46,8 @@ void $initGetIt(GetIt g, {String environment}) {
         g<NetworkInfo>(),
       ));
 }
+
+class _$SharedPreferencesDi extends SharedPreferencesDi {}
 
 class _$DioDi extends DioDi {}
 
