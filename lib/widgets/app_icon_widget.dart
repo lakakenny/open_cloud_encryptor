@@ -11,7 +11,7 @@ class AppIconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //getting screen size
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     //calculating container width
     double imageSize;

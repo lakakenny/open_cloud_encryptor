@@ -11,7 +11,7 @@ void main() async {
 
   await di.init();
 
-  var _routerService = di.getIt<RouterService>();
+  final _routerService = di.getIt<RouterService>();
   _routerService.init();
 
   runApp(App());

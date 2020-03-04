@@ -13,7 +13,7 @@ class RouterService {
   RouterService(this._router);
 
   void init() {
-    for (var item in _routesList) {
+    for (final item in _routesList) {
       _router.define(
         item.route.path,
         handler: Handler(handlerFunc: item.route.handlerFunc),

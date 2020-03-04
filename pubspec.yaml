@@ -49,14 +49,6 @@ dependencies:
 
   meta: ^1.1.8
 
-  # Dependency injection
-#  inject:
-#    git:
-#      url: https://github.com/google/inject.dart.git
-#      path: package/inject
-#      ref: 7c3cbf6
-
-
 dev_dependencies:
   #  flutter_test:
   #    sdk: flutter
@@ -67,12 +59,7 @@ dev_dependencies:
   # Build runner
   build_runner: ^1.7.2
 
-  #  inject_generator:
-  #    git:
-  #      url: https://github.com/google/inject.dart.git
-  #      path: package/inject_generator
-  #      ref: 7c3cbf6
-
+  # Service locator
   injectable_generator: 0.2.3
 
   # MobX

@@ -6,6 +6,7 @@ import 'package:open_cloud_encryptor/common/api_client/interceptors/auth_interce
 import 'package:open_cloud_encryptor/common/api_client/interceptors/bad_request_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/internal_server_error_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/unauthorized_interceptor.dart';
+import 'package:open_cloud_encryptor/common/di/di.dart';
 import 'package:open_cloud_encryptor/common/errors/api_error.dart';
 import 'package:open_cloud_encryptor/common/errors/unauthenticated_error.dart';
 import 'package:open_cloud_encryptor/constants/env.dart';

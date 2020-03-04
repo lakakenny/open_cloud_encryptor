@@ -1,7 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/common/errors/exceptions.dart';
 import 'package:open_cloud_encryptor/common/network/network_info.dart';
-import 'package:open_cloud_encryptor/features/auth/data/api/auth_api.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:open_cloud_encryptor/features/auth/data/models/auth_permission_model.dart';
@@ -32,7 +30,7 @@ class AuthRepository extends AuthRepositoryBase {
 
   @override
   Future<AuthPermissionModel> getAuthPermission() async {
-    var tokenData = await getAuthTokenId();
+    final tokenData = await getAuthTokenId();
 
     // todo validate token
     return AuthPermissionModel(
@@ -44,6 +42,7 @@ class AuthRepository extends AuthRepositoryBase {
     return _authLocalDataSource.getAuthTokenId();
   }
 
+  // @todo remove this
   @override
   Future<AuthTokenModel> getAuthTokenIdFromRemote() {
     return _authRemoteDataSource.getAuthTokenId();

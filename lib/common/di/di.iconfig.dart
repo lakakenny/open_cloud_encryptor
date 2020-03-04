@@ -4,7 +4,6 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:open_cloud_encryptor/common/di/dio_di.dart';
@@ -21,7 +20,9 @@ import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
 import 'package:open_cloud_encryptor/common/errors/error_handler.dart';
 import 'package:open_cloud_encryptor/features/auth/data/api/auth_api.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:open_cloud_encryptor/features/auth/data/repository/auth_repository.dart';
+import 'package:open_cloud_encryptor/features/auth/data/repositories/auth_repository.dart';
+import 'package:open_cloud_encryptor/features/auth/data/controllers/auth_controller.dart';
+import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
 import 'package:get_it/get_it.dart';
 
 Future<void> $initGetIt(GetIt g, {String environment}) async {
@@ -29,7 +30,6 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   final routerDi = _$RouterDi();
   final sharedPreferencesDi = _$SharedPreferencesDi();
   final networkInfoDi = _$NetworkInfoDi();
-  g.registerLazySingleton<AuthStore>(() => AuthStore());
   g.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSource());
   g.registerLazySingleton<Dio>(() => dioDi.dio);
   g.registerLazySingleton<Router>(() => routerDi.router);
@@ -61,6 +61,12 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
         g<AuthLocalDataSource>(),
         g<AuthRemoteDataSource>(),
         g<NetworkInfo>(),
+      ));
+  g.registerLazySingleton<AuthController>(() => AuthController(
+        g<AuthRepository>(),
+      ));
+  g.registerLazySingleton<AuthStore>(() => AuthStore(
+        g<AuthController>(),
       ));
 }
 
