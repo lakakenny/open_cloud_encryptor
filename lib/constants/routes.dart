@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:open_cloud_encryptor/common/route/routing.dart';
 import 'package:open_cloud_encryptor/features/home/ui/routes/home_route.dart';
 import 'package:open_cloud_encryptor/features/login/ui/routes/login_route.dart';

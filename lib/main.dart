@@ -6,7 +6,9 @@ import 'package:open_cloud_encryptor/services/router_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Env.init();
+
   await di.init();
 
   var _routerService = di.getIt<RouterService>();
