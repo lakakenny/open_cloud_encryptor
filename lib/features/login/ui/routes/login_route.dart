@@ -1,10 +1,10 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:open_cloud_encryptor/common/route/route.dart';
+import 'package:open_cloud_encryptor/common/route/routing.dart';
 import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/login/ui/pages/login.dart';
 
-class LoginRoute extends ARoute {
+class LoginRoute extends RouteProps {
   static final String _path = RoutesPath.LOGIN;
 
   static String buildPath() => _path;

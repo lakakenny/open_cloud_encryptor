@@ -1,24 +1,23 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/common/route/route.dart';
 import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/app/ui/pages/app.dart';
 
 @lazySingleton
 class RouterService {
-  static final List<ARoute> routes = routesList;
+  final _routesList = routesList;
 
   final Router _router;
 
   RouterService(this._router);
 
   void init() {
-    for (var route in routes) {
+    for (var item in _routesList) {
       _router.define(
-        route.path,
-        handler: Handler(handlerFunc: route.handlerFunc),
-        transitionType: route.transition,
+        item.route.path,
+        handler: Handler(handlerFunc: item.route.handlerFunc),
+        transitionType: item.route.transition,
       );
     }
   }
@@ -40,7 +39,9 @@ class RouterService {
     final match = _router.match(path);
 
     if (match != null) {
-      final route = routes.firstWhere((r) => r.path == match.route.route);
+      final route = _routesList
+          .map((a) => a.route)
+          .firstWhere((r) => r.path == match.route.route);
       final hasPermission = await route.hasPermission(match.parameters);
 
       if (hasPermission) {
