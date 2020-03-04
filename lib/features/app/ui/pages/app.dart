@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
-  //todo RouterService get _routerService => getIt<RouterService>();
+  RouterService get _routerService => getIt<RouterService>();
 
   void setErrorBuilder() {
     ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
       providers: [
         Provider<AuthStore>(
           create: (_) => getIt<AuthStore>(),
-        )
+        ),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
@@ -42,7 +42,7 @@ class App extends StatelessWidget {
           return widget;
         },
         title: Strings.APP_NAME,
-        onGenerateRoute: RouterService.instance.generator,
+        onGenerateRoute: _routerService.generator,
         home: SplashScreen(),
         //Todo
         //routes: Routes.routes,

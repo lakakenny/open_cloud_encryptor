@@ -1,9 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
+import 'package:open_cloud_encryptor/extends/store_widget.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
 import 'package:open_cloud_encryptor/features/home/ui/routes/home_route.dart';
 import 'package:open_cloud_encryptor/features/login/ui/routes/login_route.dart';
@@ -17,25 +15,12 @@ class SplashScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends StoreSFWidget<SplashScreen> {
   AuthStore _loginStore;
 
   List<ReactionDisposer> _disposers;
 
-  // todo RouterService get _routerService => getIt<RouterService>();
-
-  @override
-  void initState() {
-    super.initState();
-
-    startTimer();
-  }
-
-  Timer startTimer() {
-    var _duration = Duration(milliseconds: 1000);
-
-    return Timer(_duration, initApp);
-  }
+  RouterService get _routerService => getIt<RouterService>();
 
   @override
   void didChangeDependencies() {
@@ -53,22 +38,19 @@ class _SplashScreenState extends State<SplashScreen> {
     ];
   }
 
+  @override
   void initApp() async {
-    _loginStore ??= Provider.of<AuthStore>(context);
-
     await _loginStore.doLogin();
   }
 
   void handleIsLoggedIn(bool isLoggedIn) {
     if (isLoggedIn) {
-      print(isLoggedIn);
-
-      RouterService.instance.navigateTo(HomeRoute.buildPath());
+      _routerService.navigateTo(HomeRoute.buildPath());
 
       return;
     }
 
-    RouterService.instance.navigateTo(LoginRoute.buildPath());
+    _routerService.navigateTo(LoginRoute.buildPath());
   }
 
   Widget buildFirstScreen(BuildContext context) {

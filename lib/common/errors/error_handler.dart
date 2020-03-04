@@ -10,10 +10,10 @@ import 'package:open_cloud_encryptor/widgets/dialogs.dart';
 
 @lazySingleton
 class ErrorHandler {
-  // todo final RouterService routerService;
-  // todo final CrashesService crashesService;
+  final RouterService routerService;
+  final CrashesService crashesService;
 
-  ErrorHandler();
+  ErrorHandler(this.routerService, this.crashesService);
 
   void handle(
     Object error, {
@@ -24,9 +24,7 @@ class ErrorHandler {
       // Todo
       // final di = await AppDi.instance;
       // await di.accountsRepository.logOut();
-      // todo
-      // await routerService.navigateTo(SplashRoute.buildPath());
-      await RouterService.instance.navigateTo(SplashRoute.buildPath());
+      await routerService.navigateTo(SplashRoute.buildPath());
     } else if (error is ModelError &&
         error.generic != null &&
         context != null) {
@@ -37,7 +35,7 @@ class ErrorHandler {
         'Oops! Something went wrong when connecting to our servers.',
       );
     } else {
-      CrashesService.instance.nonFatalError(
+      crashesService.nonFatalError(
         error,
         stackTrace,
         context: 'ErrorHandler.handle.else',

@@ -8,7 +8,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Env.init();
   await di.init();
-  RouterService();
+
+  var _routerService = di.getIt<RouterService>();
+  _routerService.init();
 
   runApp(App());
 }

@@ -1,10 +1,8 @@
+import 'package:injectable/injectable.dart';
+
+@lazySingleton
 class CrashesService {
-  static CrashesService get instance => CrashesService();
-
-  factory CrashesService() => _singleton;
-  static final CrashesService _singleton = CrashesService._init();
-
-  CrashesService._init();
+  CrashesService();
 
   void setUser() {
     // TODO: identify user in the crash service

@@ -1,21 +1,19 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/route/route.dart';
 import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/app/ui/pages/app.dart';
 
+@lazySingleton
 class RouterService {
-  static RouterService get instance => RouterService();
-
-  factory RouterService() => _singleton;
-
-  static final RouterService _singleton = RouterService._init();
-
   static final List<ARoute> routes = routesList;
 
-  final Router _router = Router();
+  final Router _router;
 
-  RouterService._init() {
+  RouterService(this._router);
+
+  void init() {
     for (var route in routes) {
       _router.define(
         route.path,

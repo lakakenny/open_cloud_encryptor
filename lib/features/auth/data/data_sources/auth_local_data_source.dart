@@ -14,12 +14,12 @@ abstract class AuthLocalDataSourceBase {
 
 @lazySingleton
 class AuthLocalDataSource extends AuthLocalDataSourceBase {
-  //todo
   Future<SharedPreferences> get sharedPreferences =>
       SharedPreferences.getInstance();
 
   AuthLocalDataSource();
 
+  //todo
   //AuthLocalDataSource(this.sharedPreferences);
 
   @override
