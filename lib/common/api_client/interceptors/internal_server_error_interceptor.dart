@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../errors/internal_server_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/internal_server_error.dart';
 
 class InternalServerErrorInterceptor extends Interceptor {
   @override

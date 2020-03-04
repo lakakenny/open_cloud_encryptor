@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:open_cloud_encryptor/common/api_client/errors/unauthorized_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/unauthorized_error.dart';
 
 class UnauthorizedInterceptor extends Interceptor {
   @override

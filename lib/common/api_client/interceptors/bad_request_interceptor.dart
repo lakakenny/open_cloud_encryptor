@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-
-import '../errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
 
 class BadRequestInterceptor extends Interceptor {
   @override
   Future onRequest(RequestOptions options) async {
-    options.queryParameters['platform'] = 'flutter';
-
     return options;
   }
 

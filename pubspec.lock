@@ -176,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.11"
+  fluro:
+    dependency: "direct dev"
+    description:
+      path: "vendors/fluro"
+      relative: true
+    source: path
+    version: "1.5.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -571,4 +578,4 @@ packages:
     version: "2.2.0"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.4 <2.0.0"
+  flutter: ">=1.12.13+hotfix.4 <1.16.0"

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/common/api_client/errors/bad_request_error.dart';
-import 'package:open_cloud_encryptor/common/api_client/errors/unauthorized_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/unauthorized_error.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/auth_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/bad_request_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/internal_server_error_interceptor.dart';
