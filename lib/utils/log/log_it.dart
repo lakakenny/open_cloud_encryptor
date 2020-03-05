@@ -9,8 +9,12 @@ class LogIt {
   LogIt(this.logger);
 
   /// Log a message at level [Level.verbose].
-  void verbose(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void verbose(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }
@@ -19,8 +23,12 @@ class LogIt {
   }
 
   /// Log a message at level [Level.debug].
-  void debug(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void debug(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }
@@ -29,8 +37,12 @@ class LogIt {
   }
 
   /// Log a message at level [Level.info].
-  void info(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void info(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }
@@ -39,8 +51,12 @@ class LogIt {
   }
 
   /// Log a message at level [Level.warning].
-  void warn(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void warn(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }
@@ -49,8 +65,12 @@ class LogIt {
   }
 
   /// Log a message at level [Level.error].
-  void error(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void error(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }
@@ -59,8 +79,12 @@ class LogIt {
   }
 
   /// Log a message at level [Level.wtf].
-  void wtf(dynamic message,
-      [dynamic error, StackTrace stackTrace, bool showInProd = false]) {
+  void wtf(
+    dynamic message, {
+    dynamic error,
+    bool showInProd = false,
+    StackTrace stackTrace,
+  }) {
     if (Env.IS_RELEASE && !showInProd) {
       return;
     }

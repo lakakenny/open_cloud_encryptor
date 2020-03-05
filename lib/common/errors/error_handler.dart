@@ -21,7 +21,7 @@ class ErrorHandler {
     StackTrace stackTrace,
     BuildContext context,
   }) async {
-    log.error('Error encountered', error, stackTrace);
+    log.error('Error encountered', error: error, stackTrace: stackTrace);
 
     if (error is UnauthenticatedError) {
       // Todo
