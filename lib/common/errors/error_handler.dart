@@ -6,6 +6,7 @@ import 'package:open_cloud_encryptor/common/errors/unauthenticated_error.dart';
 import 'package:open_cloud_encryptor/features/splash/ui/routes/splash_route.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/services/router_service.dart';
+import 'package:open_cloud_encryptor/utils/log/log.dart';
 import 'package:open_cloud_encryptor/widgets/dialogs.dart';
 
 @lazySingleton
@@ -20,6 +21,8 @@ class ErrorHandler {
     StackTrace stackTrace,
     BuildContext context,
   }) async {
+    log.error('Error encountered', error, stackTrace);
+
     if (error is UnauthenticatedError) {
       // Todo
       // final di = await AppDi.instance;

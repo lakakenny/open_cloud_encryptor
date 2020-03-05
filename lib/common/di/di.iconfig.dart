@@ -15,6 +15,9 @@ import 'package:open_cloud_encryptor/common/di/network_info_di.dart';
 import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/services/router_service.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
+import 'package:logger/logger.dart';
+import 'package:open_cloud_encryptor/common/di/logger_di.dart';
+import 'package:open_cloud_encryptor/utils/log/log_it.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
 import 'package:open_cloud_encryptor/common/errors/error_handler.dart';
@@ -30,6 +33,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   final routerDi = _$RouterDi();
   final sharedPreferencesDi = _$SharedPreferencesDi();
   final networkInfoDi = _$NetworkInfoDi();
+  final loggerDi = _$LoggerDi();
   g.registerLazySingleton<Dio>(() => dioDi.dio);
   g.registerLazySingleton<Router>(() => routerDi.router);
   final sharedPreferences = await sharedPreferencesDi.sharedPreferences;
@@ -40,6 +44,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => NetworkInfo(g<DataConnectionChecker>()));
   g.registerLazySingleton<RouterService>(() => RouterService(g<Router>()));
   g.registerLazySingleton<CrashesService>(() => CrashesService());
+  g.registerLazySingleton<Logger>(() => loggerDi.logger);
+  g.registerLazySingleton<LogIt>(() => LogIt(g<Logger>()));
   g.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSource(g<SharedPreferences>()));
   g.registerLazySingleton<ApiClient>(() => ApiClient(g<Dio>()));
@@ -65,3 +71,5 @@ class _$RouterDi extends RouterDi {}
 class _$SharedPreferencesDi extends SharedPreferencesDi {}
 
 class _$NetworkInfoDi extends NetworkInfoDi {}
+
+class _$LoggerDi extends LoggerDi {}

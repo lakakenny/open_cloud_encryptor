@@ -49,6 +49,13 @@ dependencies:
 
   meta: ^1.1.8
 
+  # Logging
+  logger: ^0.8.3
+
+  # Routing
+  fluro:
+    path: "vendors/fluro"
+
 dev_dependencies:
   #  flutter_test:
   #    sdk: flutter
@@ -64,10 +71,6 @@ dev_dependencies:
 
   # MobX
   mobx_codegen: ^0.3.10+1
-
-
-  fluro:
-    path: "vendors/fluro"
 
 flutter_icons:
   image_path: "assets/icons/ic_launcher.png"
