@@ -9,15 +9,16 @@ class AuthController {
 
   AuthController(this.authRepository);
 
+  // todo init -> fetch token from url -> validate -> refresh
   Future<AuthPermissionModel> getAuthPermission() async {
-    return authRepository.getAuthPermission();
+    final tokenData = await getAuthTokenId();
+
+    // todo validate token
+    return AuthPermissionModel(
+        isAuthenticated: tokenData.token != null && tokenData.token.isNotEmpty);
   }
 
   Future<AuthTokenModel> getAuthTokenId() async {
     return authRepository.getAuthTokenId();
-  }
-
-  Future<AuthTokenModel> getAuthTokenIdFromRemote() {
-    return authRepository.getAuthTokenIdFromRemote();
   }
 }

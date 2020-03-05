@@ -14,13 +14,9 @@ abstract class AuthLocalDataSourceBase {
 
 @lazySingleton
 class AuthLocalDataSource extends AuthLocalDataSourceBase {
-  Future<SharedPreferences> get sharedPreferences =>
-      SharedPreferences.getInstance();
+  SharedPreferences sharedPreferences;
 
-  AuthLocalDataSource();
-
-  //todo
-  //AuthLocalDataSource(this.sharedPreferences);
+  AuthLocalDataSource(this.sharedPreferences);
 
   @override
   Future<AuthTokenModel> getAuthTokenId() async {
