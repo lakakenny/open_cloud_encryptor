@@ -15,9 +15,9 @@ class BadRequestError extends DioError {
     if (errors.containsKey(key)) {
       final error = errors[key];
       if (error is List && error.isNotEmpty) {
-        return error[0];
+        return error[0] as String;
       } else {
-        return error;
+        return error as String;
       }
     }
     return null;

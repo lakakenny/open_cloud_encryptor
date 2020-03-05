@@ -19,6 +19,7 @@ class AuthInterceptor extends Interceptor {
   }
 
   @override
+  // ignore: prefer_void_to_null
   Null onError(DioError error) {
     return null;
   }

@@ -5,7 +5,7 @@ import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/home/ui/pages/home.dart';
 
 class HomeRoute extends RouteProps {
-  static final String _path = RoutesPath.HOME;
+  static const String _path = RoutesPath.HOME;
 
   static String buildPath() => _path;
 
@@ -20,5 +20,5 @@ class HomeRoute extends RouteProps {
 
   @override
   Widget handlerFunc(BuildContext context, Map<String, dynamic> params) =>
-      HomeScreen();
+      const HomeScreen();
 }

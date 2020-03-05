@@ -47,6 +47,6 @@ class AuthTokenMapper {
       throw Exception('Invalid payload.');
     }
 
-    return payloadMap;
+    return payloadMap as Map<String, dynamic>;
   }
 }

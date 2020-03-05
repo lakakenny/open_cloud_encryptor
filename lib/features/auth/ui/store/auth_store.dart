@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
-import 'package:open_cloud_encryptor/common/di/di.dart';
 import 'package:open_cloud_encryptor/features/auth/data/controllers/auth_controller.dart';
 
 part 'auth_store.g.dart';

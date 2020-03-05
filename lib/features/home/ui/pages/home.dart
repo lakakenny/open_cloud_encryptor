@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({
+  const HomeScreen({
     Key key,
   }) : super(key: key);
 
@@ -9,21 +9,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Text('Home page', style: TextStyle(fontSize: 18)),
               padding: const EdgeInsets.all(8),
+              child: const Text('Home page', style: TextStyle(fontSize: 18)),
             ),
             RaisedButton(
               onPressed: () {
                 // auth.inc();
               },
-              child: Text(
+              child: const Text(
                 'Do something!',
               ),
             ),

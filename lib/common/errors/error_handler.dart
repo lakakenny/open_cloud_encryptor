@@ -16,7 +16,7 @@ class ErrorHandler {
 
   ErrorHandler(this.routerService, this.crashesService);
 
-  void handle(
+  Future<void> handle(
     Object error, {
     StackTrace stackTrace,
     BuildContext context,

@@ -4,7 +4,7 @@ import 'package:open_cloud_encryptor/constants/env.dart';
 import 'package:open_cloud_encryptor/features/app/ui/pages/app.dart';
 import 'package:open_cloud_encryptor/services/router_service.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Env.init();

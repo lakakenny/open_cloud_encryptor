@@ -32,18 +32,18 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
       reaction(
         (_) => _loginStore.isLoggedIn,
         (bool isLoggedIn) {
-          handleIsLoggedIn(isLoggedIn);
+          handleIsLoggedIn(isLoggedIn: isLoggedIn);
         },
       ),
     ];
   }
 
   @override
-  void initApp() async {
+  Future<void> initApp() async {
     await _loginStore.doLogin();
   }
 
-  void handleIsLoggedIn(bool isLoggedIn) {
+  void handleIsLoggedIn({bool isLoggedIn}) {
     if (isLoggedIn) {
       _routerService.navigateTo(HomeRoute.buildPath());
 

@@ -16,7 +16,7 @@ class App extends StatelessWidget {
 
   void setErrorBuilder() {
     ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: Text('Oops.. Some error occured.'),
         ),

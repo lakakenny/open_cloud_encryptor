@@ -5,13 +5,13 @@ import 'package:open_cloud_encryptor/constants/strings.dart';
 class SplashLoading extends StatelessWidget {
   final String title;
 
-  SplashLoading({
+  const SplashLoading({
     @required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(Strings.APP_NAME),
     );
   }

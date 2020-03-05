@@ -10,7 +10,7 @@ class AuthTokenModel {
 
   factory AuthTokenModel.fromJson(Map<String, dynamic> json) {
     return AuthTokenModel(
-      token: json['token'],
+      token: json['token'] as String,
     );
   }
 

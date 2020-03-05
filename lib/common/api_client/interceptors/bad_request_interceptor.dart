@@ -11,7 +11,7 @@ class BadRequestInterceptor extends Interceptor {
   Future onError(DioError error) async {
     if (error.response != null) {
       if (error.response.statusCode == 400) {
-        return BadRequestError(error.response.data);
+        return BadRequestError(error.response.data as Map<String, dynamic>);
       } else if (error.response.statusCode == 417) {
         return BadRequestError({});
       }

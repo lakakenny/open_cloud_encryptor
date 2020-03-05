@@ -5,7 +5,7 @@ import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/login/ui/pages/login.dart';
 
 class LoginRoute extends RouteProps {
-  static final String _path = RoutesPath.LOGIN;
+  static const String _path = RoutesPath.LOGIN;
 
   static String buildPath() => _path;
 
@@ -20,5 +20,5 @@ class LoginRoute extends RouteProps {
 
   @override
   Widget handlerFunc(BuildContext context, Map<String, dynamic> params) =>
-      LoginScreen();
+      const LoginScreen();
 }

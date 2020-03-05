@@ -5,7 +5,7 @@ import 'package:open_cloud_encryptor/constants/routes.dart';
 import 'package:open_cloud_encryptor/features/splash/ui/pages/splash.dart';
 
 class SplashRoute extends RouteProps {
-  static final String _path = RoutesPath.SPLASH;
+  static const String _path = RoutesPath.SPLASH;
 
   static String buildPath() => _path;
 

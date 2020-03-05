@@ -6,7 +6,7 @@ abstract class RouteProps {
   bool replace = false;
   bool clearStack = false;
   TransitionType transition = TransitionType.native;
-  Duration transitionDuration = Duration(milliseconds: 250);
+  Duration transitionDuration = const Duration(milliseconds: 250);
   RouteTransitionsBuilder transitionBuilder;
 
   Widget handlerFunc(BuildContext context, Map<String, dynamic> params);

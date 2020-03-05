@@ -25,5 +25,5 @@ abstract class StoreSFWidget<S extends StatefulWidget> extends State<S> {
   @mustCallSuper
   void onError(Object error) => _errorHandler.handle(error, context: context);
 
-  void initApp() async {}
+  Future<void> initApp() async {}
 }

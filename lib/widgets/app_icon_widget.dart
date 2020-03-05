@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppIconWidget extends StatelessWidget {
-  final image;
+  final String image;
 
   const AppIconWidget({
     Key key,
@@ -16,9 +16,9 @@ class AppIconWidget extends StatelessWidget {
     //calculating container width
     double imageSize;
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
-      imageSize = (size.width * 0.20);
+      imageSize = size.width * 0.20;
     } else {
-      imageSize = (size.height * 0.20);
+      imageSize = size.height * 0.20;
     }
 
     return Image.asset(

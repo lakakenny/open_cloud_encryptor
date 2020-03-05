@@ -13,9 +13,9 @@ class AuthTokenResponse {
 
   factory AuthTokenResponse.fromJson(Map<String, dynamic> json) {
     return AuthTokenResponse(
-      token: json['token'],
-      message: json['message'],
-      success: json['success'],
+      token: json['token'] as String,
+      message: json['message'] as String,
+      success: json['success'] as bool,
     );
   }
 }

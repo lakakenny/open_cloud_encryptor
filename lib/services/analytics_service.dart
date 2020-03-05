@@ -1,10 +1,8 @@
+import 'package:injectable/injectable.dart';
+
+@lazySingleton
 class AnalyticsService {
-  static AnalyticsService get instance => AnalyticsService();
-  static final AnalyticsService _singleton = AnalyticsService._init();
-
-  factory AnalyticsService() => _singleton;
-
-  AnalyticsService._init();
+  AnalyticsService();
 
   void setUser() {
     // TODO: identify user in the analytics service

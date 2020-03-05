@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(strokeWidth: 2),
     );
   }

@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/constants/shared_preferences_keys.dart';
@@ -20,11 +20,12 @@ class AuthLocalDataSource extends AuthLocalDataSourceBase {
 
   @override
   Future<AuthTokenModel> getAuthTokenId() async {
-    final pref = await sharedPreferences;
+    final pref = sharedPreferences;
     final json = pref.getString(SharedPreferencesKeys.AUTH_TOKEN);
 
     if (json != null) {
-      return Future.value(AuthTokenModel.fromJson(jsonDecode(json)));
+      return Future.value(
+          AuthTokenModel.fromJson(jsonDecode(json) as Map<String, dynamic>));
     }
 
     return Future.value(AuthTokenModel(token: null));
@@ -32,7 +33,7 @@ class AuthLocalDataSource extends AuthLocalDataSourceBase {
 
   @override
   Future<void> cacheLogin(AuthTokenModel AuthTokenModel) async {
-    final pref = await sharedPreferences;
+    final pref = sharedPreferences;
     final tokenData = jsonEncode(AuthTokenModel.toJson());
 
     return pref.setString(SharedPreferencesKeys.AUTH_TOKEN, tokenData);

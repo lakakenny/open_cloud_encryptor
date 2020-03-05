@@ -10,8 +10,8 @@ class DialogAlert extends AlertDialog {
           content: Text(content),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
               onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Ok'),
             ),
           ],
         );
@@ -37,15 +37,15 @@ class DialogConfirm extends AlertDialog {
           content: Text(content),
           actions: <Widget>[
             FlatButton(
-              child: Text('No'),
               onPressed: () => Navigator.of(context).pop(),
+              child: const Text('No'),
             ),
             FlatButton(
-              child: Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pop();
                 onYes();
               },
+              child: const Text('Yes'),
             ),
           ],
         );

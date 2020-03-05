@@ -6,11 +6,11 @@ import 'package:open_cloud_encryptor/features/splash/ui/routes/splash_route.dart
 class RoutesPath {
   RoutesPath._();
 
-  static final String SPLASH = 'splash';
+  static const String SPLASH = 'splash';
 
-  static final String HOME = '';
+  static const String HOME = '';
 
-  static final String LOGIN = 'login';
+  static const String LOGIN = 'login';
 }
 
 final List<RouteMaker> routesList = [

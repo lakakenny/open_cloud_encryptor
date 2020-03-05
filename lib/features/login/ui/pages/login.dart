@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({
+  const LoginScreen({
     Key key,
   }) : super(key: key);
 
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 //
               },
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),
