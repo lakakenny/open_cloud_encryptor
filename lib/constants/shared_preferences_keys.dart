@@ -1,3 +1,3 @@
 class SharedPreferencesKeys {
-  static final String LOGIN = 'CACHED_LOGIN';
+  static const String AUTH_TOKEN = 'AUTH_TOKEN';
 }

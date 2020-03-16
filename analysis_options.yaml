@@ -1,5 +1,31 @@
-include: package:pedantic/analysis_options.yaml
+include: package:lint/analysis_options.yaml
 
 linter:
   rules:
     - prefer_single_quotes
+    - omit_local_variable_types
+
+analyzer:
+  errors:
+    non_constant_identifier_names: ignore
+    avoid_classes_with_only_static_members: ignore
+    prefer_const_declarations: error
+    constant_identifier_names: ignore
+    missing_required_param: error
+    parameter_assignments: error
+    unused_import: warning
+    sort_constructors_first: warning
+    unused_field: warning
+    unused_element: ignore
+    overridden_fields: ignore
+    unawaited_futures: warning
+    unnecessary_final: error
+    prefer_single_quotes: error
+    omit_local_variable_types: error
+
+  exclude:
+    - "vendors/**"
+    - "resources/**"
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "lib/router/router.gr.dart"
