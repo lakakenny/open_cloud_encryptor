@@ -9,6 +9,7 @@ import 'package:open_cloud_encryptor/common/api_client/interceptors/unauthorized
 import 'package:open_cloud_encryptor/common/errors/api_error.dart';
 import 'package:open_cloud_encryptor/common/errors/unauthenticated_error.dart';
 import 'package:open_cloud_encryptor/constants/env.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 //@todo
 @lazySingleton
@@ -23,12 +24,15 @@ class ApiClient {
     dio.interceptors.add(AuthInterceptor());
     dio.interceptors.add(UnauthorizedInterceptor());
     dio.interceptors.add(BadRequestInterceptor());
+
     if (Env.data.debugApiClient) {
-      dio.interceptors.add(LogInterceptor(
+      dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
         responseHeader: true,
         responseBody: true,
+        error: true,
+        compact: true,
       ));
     }
   }

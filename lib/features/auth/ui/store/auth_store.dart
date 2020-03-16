@@ -20,7 +20,7 @@ abstract class _AuthStoreBase with Store {
   _AuthStoreBase(this.authController);
 
   @observable
-  bool isLoggedIn = false;
+  bool isLoggedIn;
 
   @observable
   String errorMessage;

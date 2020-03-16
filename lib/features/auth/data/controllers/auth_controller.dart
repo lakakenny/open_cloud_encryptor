@@ -18,6 +18,15 @@ class AuthController {
         isAuthenticated: tokenData.token != null && tokenData.token.isNotEmpty);
   }
 
+  // todo remove
+  Future<AuthPermissionModel> getAuthPermissionFromRemote() async {
+    final tokenData = await authRepository.getAuthTokenIdFromRemote();
+
+    // todo validate token
+    return AuthPermissionModel(
+        isAuthenticated: tokenData.token != null && tokenData.token.isNotEmpty);
+  }
+
   Future<AuthTokenModel> getAuthTokenId() async {
     return authRepository.getAuthTokenId();
   }

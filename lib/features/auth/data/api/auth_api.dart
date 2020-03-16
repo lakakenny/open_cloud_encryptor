@@ -14,7 +14,7 @@ class AuthApi extends AuthApiBase {
 
   @override
   Future<AuthTokenModel> getAuthTokenId() async {
-    final response = await _apiClient.get('');
+    final response = await _apiClient.get('api/v1/login/');
 
     return AuthTokenModel.fromJson(response.data as Map<String, dynamic>);
   }

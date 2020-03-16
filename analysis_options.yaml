@@ -23,3 +23,9 @@ analyzer:
     prefer_single_quotes: error
     omit_local_variable_types: error
 
+  exclude:
+    - "vendors/**"
+    - "resources/**"
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "lib/router/router.gr.dart"
