@@ -53,7 +53,12 @@ dependencies:
   # Logging
   logger: ^0.8.3
 
+  # Routing
   auto_route: ^0.3.1
+
+  # Json
+  json_serializable: ^3.2.5
+  json_annotation: ^3.0.1
 
 
 dev_dependencies:
