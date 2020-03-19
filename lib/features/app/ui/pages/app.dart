@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
+import 'package:open_cloud_encryptor/features/login/ui/store/login_store.dart';
 import 'package:open_cloud_encryptor/router/router.gr.dart';
 import 'package:open_cloud_encryptor/constants/env.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
@@ -23,6 +24,9 @@ class App extends StatelessWidget {
       providers: [
         Provider<AuthStore>(
           create: (_) => getIt<AuthStore>(),
+        ),
+        Provider<LoginStore>(
+          create: (_) => getIt<LoginStore>(),
         ),
       ],
       child: MaterialApp(

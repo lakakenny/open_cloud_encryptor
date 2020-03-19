@@ -32,13 +32,8 @@ class Router {
           transitionDuration: Duration(milliseconds: 200),
         );
       case Router.loginScreen:
-        if (hasInvalidArgs<Key>(args)) {
-          return misTypedArgsRoute<Key>(args);
-        }
-        final typedArgs = args as Key;
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
-              LoginScreen(key: typedArgs),
+          pageBuilder: (ctx, animation, secondaryAnimation) => LoginScreen(),
           settings: settings,
           transitionsBuilder: TransitionsBuilders.slideLeft,
           transitionDuration: Duration(milliseconds: 200),

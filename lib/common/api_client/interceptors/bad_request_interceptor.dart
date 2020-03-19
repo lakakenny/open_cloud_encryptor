@@ -12,7 +12,7 @@ class BadRequestInterceptor extends Interceptor {
     if (error.response != null) {
       if (error.response.statusCode == 400) {
         return BadRequestError(error.response.data as Map<String, dynamic>);
-      } else if (error.response.statusCode == 417) {
+      } else if (error.response.statusCode == 417) {//todo
         return BadRequestError({});
       }
     }

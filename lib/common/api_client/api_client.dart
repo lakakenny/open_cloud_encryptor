@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/internal_server_error.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_errors/unauthorized_error.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/auth_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/bad_request_interceptor.dart';
@@ -38,9 +39,14 @@ class ApiClient {
   }
 
   Future<Response> post(
-      String path, dynamic data, Function badRequestToModelError) async {
+    String path,
+    dynamic data,
+    Function badRequestToModelError,
+  ) async {
     try {
       return await dio.post(path, data: data);
+    } on InternalServerError {
+      throw InternalServerError();
     } on BadRequestError catch (error) {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
@@ -57,6 +63,8 @@ class ApiClient {
       String path, dynamic data, Function badRequestToModelError) async {
     try {
       return await dio.put(path, data: data);
+    } on InternalServerError {
+      throw InternalServerError();
     } on BadRequestError catch (error) {
       throw badRequestToModelError(error);
     } on UnauthorizedError {
@@ -72,6 +80,8 @@ class ApiClient {
   Future<Response> delete(String path) async {
     try {
       return await dio.delete(path);
+    } on InternalServerError {
+      throw InternalServerError();
     } on UnauthorizedError {
       throw UnauthenticatedError();
     } on DioError {
@@ -85,6 +95,8 @@ class ApiClient {
   Future<Response> get(String path) async {
     try {
       return await dio.get(path);
+    } on InternalServerError {
+      throw InternalServerError();
     } on UnauthorizedError {
       throw UnauthenticatedError();
     } on DioError {

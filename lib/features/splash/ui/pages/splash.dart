@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends StoreSFWidget<SplashScreen> {
-  AuthStore _loginStore;
+  AuthStore _authStore;
 
   List<ReactionDisposer> _disposers;
 
@@ -21,11 +21,11 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    _loginStore ??= Provider.of<AuthStore>(context);
+    _authStore ??= Provider.of<AuthStore>(context);
 
     _disposers ??= [
       reaction(
-        (_) => _loginStore.isLoggedIn,
+        (_) => _authStore.isLoggedIn,
         (bool isLoggedIn) {
           handleIsLoggedIn(isLoggedIn: isLoggedIn);
         },
@@ -35,7 +35,7 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
 
   @override
   Future<void> initApp() async {
-    await _loginStore.doLogin();
+    await _authStore.doLogin();
   }
 
   void handleIsLoggedIn({bool isLoggedIn}) {

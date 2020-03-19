@@ -8,6 +8,7 @@ import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/utils/log/log.dart';
 import 'package:open_cloud_encryptor/widgets/dialogs.dart';
 
+// todo make sure this works
 @lazySingleton
 class ErrorHandler {
   final CrashesService crashesService;

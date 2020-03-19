@@ -32,9 +32,9 @@ class AuthLocalDataSource extends AuthLocalDataSourceBase {
   }
 
   @override
-  Future<void> cacheLogin(AuthTokenModel AuthTokenModel) async {
+  Future<void> cacheLogin(AuthTokenModel response) async {
     final pref = sharedPreferences;
-    final tokenData = jsonEncode(AuthTokenModel.toJson());
+    final tokenData = jsonEncode(response.toJson());
 
     return pref.setString(SharedPreferencesKeys.AUTH_TOKEN, tokenData);
   }
