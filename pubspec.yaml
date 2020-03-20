@@ -60,6 +60,9 @@ dependencies:
   json_serializable: ^3.2.5
   json_annotation: ^3.0.1
 
+  # Functional programming thingies
+  dartz: ^0.8.9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

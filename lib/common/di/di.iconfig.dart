@@ -16,6 +16,7 @@ import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/services/analytics_service.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/services/pushes_service.dart';
+import 'package:open_cloud_encryptor/features/errors/ui/store/errors_store.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/utils/log/log_it.dart';
@@ -49,6 +50,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<AnalyticsService>(() => AnalyticsService());
   g.registerLazySingleton<CrashesService>(() => CrashesService());
   g.registerLazySingleton<PushesService>(() => PushesService());
+  g.registerLazySingleton<ErrorsStore>(() => ErrorsStore());
   g.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSource(g<SharedPreferences>()));
   g.registerLazySingleton<LoginLocalDataSource>(
@@ -78,7 +80,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<LoginController>(
       () => LoginController(g<LoginRepository>()));
   g.registerLazySingleton<AuthStore>(() => AuthStore(g<AuthController>()));
-  g.registerLazySingleton<LoginStore>(() => LoginStore(g<LoginController>()));
+  g.registerLazySingleton<LoginStore>(
+      () => LoginStore(g<LoginController>(), g<ErrorsStore>()));
 }
 
 class _$LoggerDi extends LoggerDi {}

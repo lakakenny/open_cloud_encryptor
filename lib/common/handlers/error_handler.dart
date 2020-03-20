@@ -24,10 +24,12 @@ class ErrorHandler {
       // Todo
       // final di = await AppDi.instance;
       // await di.accountsRepository.logOut();
-      Router.navigator.pushNamed(Router.splashScreen);
+
+      Router.navigator.pushNamed(Router.loginScreen);
     } else if (error is ModelException &&
         error.generic != null &&
         context != null) {
+      //@todo doesnt work
       DialogAlert.show(context, error.generic);
     } else if (error is ApiException && context != null) {
       DialogAlert.show(

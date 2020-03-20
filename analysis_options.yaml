@@ -13,7 +13,7 @@ analyzer:
     constant_identifier_names: ignore
     missing_required_param: error
     parameter_assignments: error
-    unused_import: warning
+    unused_import: error
     sort_constructors_first: warning
     unused_field: warning
     unused_element: ignore
@@ -29,3 +29,4 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.gr.dart"
     - "lib/common/router/router.gr.dart"
+    - "component_templates"

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
@@ -17,7 +18,8 @@ class LoginRepository {
     this._networkInfo,
   );
 
-  Future<LoginResponseModel> postLogin(LoginRequestModel params) async {
+  Future<Either<Exception, LoginResponseModel>> postLogin(
+      LoginRequestModel params) async {
     return _loginRemoteDataSource.postLogin(params);
   }
 }
