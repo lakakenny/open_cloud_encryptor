@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:open_cloud_encryptor/common/errors/model_error.dart';
 
 part 'login_request_model.g.dart';
 

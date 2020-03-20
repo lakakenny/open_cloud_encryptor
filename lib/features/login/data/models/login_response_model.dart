@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:open_cloud_encryptor/common/errors/model_error.dart';
+import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 
 part 'login_response_model.g.dart';
 
@@ -18,7 +18,7 @@ class LoginResponseModel {
       _$LoginResponseModelFromJson(json);
 }
 
-class LoginResponseModelError implements ModelError {
+class LoginResponseModelError implements ModelException {
   @override
   final String generic;
 

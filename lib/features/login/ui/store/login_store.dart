@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
-import 'package:open_cloud_encryptor/router/router.gr.dart';
+import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 
 part 'login_store.g.dart';
 

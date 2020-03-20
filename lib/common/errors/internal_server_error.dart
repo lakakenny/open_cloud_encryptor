@@ -1,1 +1,0 @@
-class InternalServerError implements Exception {}

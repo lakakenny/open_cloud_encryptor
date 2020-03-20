@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_api_error.dart';
 import 'package:open_cloud_encryptor/features/auth/data/models/auth_token_model.dart';
 
 class AuthTokenMapper {
@@ -8,7 +8,7 @@ class AuthTokenMapper {
     return model.token;
   }
 
-  static AuthTokenModelError badRequestToModelError(BadRequestError error) {
+  static AuthTokenModelError badRequestToModelError(BadRequestApiError error) {
     return AuthTokenModelError(
       generic: error.generic(),
     );

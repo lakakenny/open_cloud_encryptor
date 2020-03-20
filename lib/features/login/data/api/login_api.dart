@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
-import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_api_error.dart';
 import 'package:open_cloud_encryptor/features/login/data/mappers/login_mapper.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_response_model.dart';
@@ -15,7 +15,7 @@ class LoginApi {
     final response = await _apiClient.post(
       'api/v1/users/login',
       params,
-      (BadRequestError badRequestError) =>
+      (BadRequestApiError badRequestError) =>
           LoginMapper.badRequestToModelError(badRequestError),
     );
 

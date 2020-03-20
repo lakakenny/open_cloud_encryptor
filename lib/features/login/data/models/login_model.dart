@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:open_cloud_encryptor/common/errors/model_error.dart';
+import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 
 part 'login_model.g.dart';
 
@@ -18,7 +18,7 @@ class LoginModel {
   Map<String, dynamic> toJson() => _$LoginModelToJson(this);
 }
 
-class LoginModelError implements ModelError {
+class LoginModelError implements ModelException {
   @override
   final String generic;
 

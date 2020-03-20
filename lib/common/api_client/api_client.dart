@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
-import 'package:open_cloud_encryptor/common/api_client/api_errors/internal_server_error.dart';
-import 'package:open_cloud_encryptor/common/api_client/api_errors/unauthorized_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_api_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/internal_server_api_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/unauthorized_api_error.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/auth_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/bad_request_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/internal_server_error_interceptor.dart';
 import 'package:open_cloud_encryptor/common/api_client/interceptors/unauthorized_interceptor.dart';
-import 'package:open_cloud_encryptor/common/errors/api_error.dart';
-import 'package:open_cloud_encryptor/common/errors/unauthenticated_error.dart';
+import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 import 'package:open_cloud_encryptor/constants/env.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -41,69 +40,57 @@ class ApiClient {
   Future<Response> post(
     String path,
     dynamic data,
-    Function badRequestToModelError,
+    Function badRequestToModelException,
   ) async {
     try {
       return await dio.post(path, data: data);
-    } on InternalServerError {
-      throw InternalServerError();
-    } on BadRequestError catch (error) {
-      throw badRequestToModelError(error);
-    } on UnauthorizedError {
-      throw UnauthenticatedError();
+    } on InternalServerApiError {
+      throw InternalException();
+    } on BadRequestApiError catch (error) {
+      throw badRequestToModelException(error);
+    } on UnauthorizedApiError {
+      throw UnauthenticatedException();
     } on DioError {
-      throw ApiError();
+      throw ApiException();
     }
-
-    //@todo
-    // You may also want to do some special treatment for InternalServerError
   }
 
   Future<Response> put(
-      String path, dynamic data, Function badRequestToModelError) async {
+      String path, dynamic data, Function badRequestToModelException) async {
     try {
       return await dio.put(path, data: data);
-    } on InternalServerError {
-      throw InternalServerError();
-    } on BadRequestError catch (error) {
-      throw badRequestToModelError(error);
-    } on UnauthorizedError {
-      throw UnauthenticatedError();
+    } on InternalServerApiError {
+      throw InternalException();
+    } on BadRequestApiError catch (error) {
+      throw badRequestToModelException(error);
+    } on UnauthorizedApiError {
+      throw UnauthenticatedException();
     } on DioError {
-      throw ApiError();
+      throw ApiException();
     }
-
-    //@todo
-    // You may also want to do some special treatment for InternalServerError
   }
 
   Future<Response> delete(String path) async {
     try {
       return await dio.delete(path);
-    } on InternalServerError {
-      throw InternalServerError();
-    } on UnauthorizedError {
-      throw UnauthenticatedError();
+    } on InternalServerApiError {
+      throw InternalException();
+    } on UnauthorizedApiError {
+      throw UnauthenticatedException();
     } on DioError {
-      throw ApiError();
+      throw ApiException();
     }
-
-    //@todo
-    // You may also want to do some special treatment for InternalServerError
   }
 
   Future<Response> get(String path) async {
     try {
       return await dio.get(path);
-    } on InternalServerError {
-      throw InternalServerError();
-    } on UnauthorizedError {
-      throw UnauthenticatedError();
+    } on InternalServerApiError {
+      throw InternalException();
+    } on UnauthorizedApiError {
+      throw UnauthenticatedException();
     } on DioError {
-      throw ApiError();
+      throw ApiException();
     }
-
-    //@todo
-    // You may also want to do some special treatment for InternalServerError
   }
 }

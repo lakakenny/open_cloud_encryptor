@@ -1,1 +1,0 @@
-class UnauthenticatedError implements Exception {}

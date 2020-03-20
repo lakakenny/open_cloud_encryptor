@@ -1,4 +1,4 @@
-import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_error.dart';
+import 'package:open_cloud_encryptor/common/api_client/api_errors/bad_request_api_error.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_response_model.dart';
 
 class LoginResponseMapper {
@@ -7,7 +7,7 @@ class LoginResponseMapper {
   }
 
   static LoginResponseModelError badRequestToModelError(
-    BadRequestError error,
+    BadRequestApiError error,
   ) {
     return LoginResponseModelError(
       generic: error.generic(),

@@ -2,10 +2,10 @@ import 'dart:collection';
 
 import 'package:dio/dio.dart';
 
-class BadRequestError extends DioError {
+class BadRequestApiError extends DioError {
   Map<String, dynamic> errors = HashMap();
 
-  BadRequestError(this.errors);
+  BadRequestApiError(this.errors);
 
   String generic() {
     return key('__all__') ?? key('non_field_errors');

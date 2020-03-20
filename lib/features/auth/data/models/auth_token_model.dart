@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import 'package:open_cloud_encryptor/common/errors/model_error.dart';
+import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 
 part 'auth_token_model.g.dart';
 
@@ -18,7 +18,7 @@ class AuthTokenModel {
   Map<String, dynamic> toJson() => _$AuthTokenModelToJson(this);
 }
 
-class AuthTokenModelError implements ModelError {
+class AuthTokenModelError implements ModelException {
   @override
   final String generic;
 

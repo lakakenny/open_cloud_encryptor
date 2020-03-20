@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:open_cloud_encryptor/router/router.gr.dart';
+import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
 import 'package:open_cloud_encryptor/features/splash/ui/widgets/splash_loading.dart';
