@@ -63,6 +63,10 @@ dependencies:
   # Functional programming thingies
   dartz: ^0.8.9
 
+  flushbar:
+    git:
+      url: https://github.com/AndreHaueisen/flushbar.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

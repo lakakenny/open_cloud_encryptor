@@ -24,7 +24,13 @@ class _ErrorsScreenState extends StoreSFWidget<ErrorsScreen> {
       reaction(
         (_) => _errorsStore.exception,
         (Exception exception) {
-          onError(exception);
+          onErrorException(exception);
+        },
+      ),
+      reaction(
+        (_) => _errorsStore.errorMessage,
+        (String errorMessage) {
+          onErrorMessage(errorMessage);
         },
       ),
     ];

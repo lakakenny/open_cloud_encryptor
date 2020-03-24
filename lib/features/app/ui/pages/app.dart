@@ -40,21 +40,19 @@ class App extends StatelessWidget {
         builder: (BuildContext context, Widget widget) {
           setErrorBuilder();
 
-          return widget;
+          return Row(
+            children: <Widget>[
+              Expanded(
+                child: widget,
+              ),
+              ErrorsScreen(),
+            ],
+          );
         },
         title: Strings.APP_NAME,
         onGenerateRoute: Router.onGenerateRoute,
         initialRoute: Router.splashScreen,
         navigatorKey: Router.navigator.key,
-        home: Scaffold(
-          // Add the common widgets in here
-          body: Column(
-            children: <Widget>[
-              ErrorsScreen(),
-            ],
-          ),
-        ),
-
         //Todo
         // theme: themeData,
       ),

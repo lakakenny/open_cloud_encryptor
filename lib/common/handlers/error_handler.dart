@@ -1,4 +1,6 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
@@ -13,10 +15,10 @@ class ErrorHandler {
 
   ErrorHandler(this.crashesService);
 
-  Future<void> handle(
+  Future<void> handleException(
     Object error, {
     StackTrace stackTrace,
-    BuildContext context,
+    @required BuildContext context,
   }) async {
     log.error('Error encountered', error: error, stackTrace: stackTrace);
 
@@ -26,7 +28,9 @@ class ErrorHandler {
       // await di.accountsRepository.logOut();
 
       Router.navigator.pushNamed(Router.loginScreen);
-    } else if (error is ModelException &&
+    }
+    // todo do we need this
+    else if (error is ModelException &&
         error.generic != null &&
         context != null) {
       //@todo doesnt work
@@ -42,6 +46,23 @@ class ErrorHandler {
         stackTrace,
         context: 'ErrorHandler.handle.else',
       );
+    }
+  }
+
+  Future<void> handleError(
+    String errorMessage, {
+    StackTrace stackTrace,
+    String title = 'Error encountered',
+    @required BuildContext context,
+  }) async {
+    log.error('Error encountered', error: errorMessage, stackTrace: stackTrace);
+
+    if (errorMessage.isNotEmpty) {
+      /*Flushbar(
+        title: title,
+        message: errorMessage,
+        duration: const Duration(seconds: 5),
+      ).show(context);*/
     }
   }
 }

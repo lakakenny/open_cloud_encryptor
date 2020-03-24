@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
+import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/features/errors/ui/store/errors_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
@@ -36,6 +37,8 @@ abstract class _LoginStoreBase with Store {
     data.fold(
       (failure) {
         if (failure is UnauthenticatedException) {
+          errorsStore.setErrorMessage(Errors.INVALID_AUTHENTICATION_MESSAGE);
+
           return;
         }
 

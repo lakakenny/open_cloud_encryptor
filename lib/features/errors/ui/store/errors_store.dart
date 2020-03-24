@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
-import 'package:open_cloud_encryptor/utils/log/log.dart';
 
 part 'errors_store.g.dart';
 

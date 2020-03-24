@@ -36,7 +36,7 @@ class _LoginScreenState extends StoreSFWidget<LoginScreen> {
             RaisedButton(
               onPressed: () {
                 doLogin(
-                  LoginRequestModel(username: 'user', password: 'password'),
+                  LoginRequestModel(username: 'users', password: 'password'),
                 );
               },
               child: const Text('Login'),
