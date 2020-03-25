@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
+import 'package:open_cloud_encryptor/common/router/router_auth_guard.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
-import 'package:open_cloud_encryptor/features/alerts/ui/pages/alerts.dart';
 import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/ui/store/login_store.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
@@ -37,22 +38,16 @@ class App extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: Env.data.debugShowCheckedModeBanner,
         debugShowMaterialGrid: Env.data.debugShowMaterialGrid,
-        builder: (BuildContext context, Widget widget) {
+        builder: (context, nativeNavigator) {
           setErrorBuilder();
 
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: widget,
-              ),
-              AlertsScreen(),
-            ],
+          return ExtendedNavigator<Router>(
+            initialRoute: Routes.splashScreen,
+            router: Router(),
+            guards: [RouterAuthGuard()],
           );
         },
         title: Strings.APP_NAME,
-        onGenerateRoute: Router.onGenerateRoute,
-        initialRoute: Router.splashScreen,
-        navigatorKey: Router.navigator.key,
         //Todo
         // theme: themeData,
       ),

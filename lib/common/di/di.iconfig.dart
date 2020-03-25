@@ -16,15 +16,15 @@ import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/services/analytics_service.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/services/pushes_service.dart';
-import 'package:open_cloud_encryptor/features/alerts/data/controllers/alerts_controller.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
+import 'package:open_cloud_encryptor/features/alerts/data/controllers/alerts_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/utils/log/log_it.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
 import 'package:open_cloud_encryptor/common/handlers/error_handler.dart';
-import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/auth/data/api/auth_api.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/api/login_api.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_remote_data_source.dart';
 import 'package:open_cloud_encryptor/features/auth/data/repositories/auth_repository.dart';
@@ -51,21 +51,21 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<AnalyticsService>(() => AnalyticsService());
   g.registerLazySingleton<CrashesService>(() => CrashesService());
   g.registerLazySingleton<PushesService>(() => PushesService());
-  g.registerLazySingleton<AlertsController>(
-      () => AlertsController(g<CrashesService>()));
   g.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSource(g<SharedPreferences>()));
+  g.registerLazySingleton<AlertsController>(
+      () => AlertsController(g<CrashesService>()));
   g.registerLazySingleton<LoginLocalDataSource>(
       () => LoginLocalDataSource(g<SharedPreferences>()));
   g.registerLazySingleton<LogIt>(() => LogIt(g<Logger>()));
   g.registerLazySingleton<ApiClient>(() => ApiClient(g<Dio>()));
   g.registerLazySingleton<ErrorHandler>(
       () => ErrorHandler(g<CrashesService>()));
-  g.registerLazySingleton<AlertsStore>(
-      () => AlertsStore(g<AlertsController>()));
   g.registerLazySingleton<AuthApi>(() => AuthApi(g<ApiClient>()));
   g.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSource(g<AuthApi>()));
+  g.registerLazySingleton<AlertsStore>(
+      () => AlertsStore(g<AlertsController>()));
   g.registerLazySingleton<LoginApi>(() => LoginApi(g<ApiClient>()));
   g.registerLazySingleton<LoginRemoteDataSource>(
       () => LoginRemoteDataSource(g<LoginApi>()));

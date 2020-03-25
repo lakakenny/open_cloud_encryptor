@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
+import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
@@ -38,7 +40,7 @@ abstract class _LoginStoreBase with Store {
 
     data.fold(
       (failure) {
-       /* if (failure is UnauthenticatedException) {
+        /* if (failure is UnauthenticatedException) {
           alertsStore.setAlert(Errors.INVALID_AUTHENTICATION_MESSAGE);
 
           return;
@@ -49,7 +51,8 @@ abstract class _LoginStoreBase with Store {
       },
       (res) {
         if (res.token_id.isNotEmpty) {
-          Router.navigator.pushNamed(Router.homeScreen);
+          //Routes.navigator.pushNamed(Routes.homeScreen);
+          ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.homeScreen);
 
           return;
         }

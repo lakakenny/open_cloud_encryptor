@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
@@ -67,7 +68,7 @@ class AlertsController {
 
       _body = Errors.INVALID_API_MESSAGE;
 
-      Router.navigator.pushNamed(Router.loginScreen);
+      ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.loginScreen);
     } else if (exception is ModelException && exception.generic != null) {
       _body = exception.generic;
     } else if (exception is ApiException) {

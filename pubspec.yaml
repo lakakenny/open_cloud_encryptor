@@ -54,7 +54,7 @@ dependencies:
   logger: ^0.8.3
 
   # Routing
-  auto_route: ^0.3.1
+  auto_route: ^0.4.2
 
   # Json
   json_serializable: ^3.2.5
@@ -66,6 +66,8 @@ dependencies:
   flushbar:
     git:
       url: https://github.com/AndreHaueisen/flushbar.git
+
+  flash: ^1.2.3
 
 dev_dependencies:
   flutter_test:
@@ -84,7 +86,7 @@ dev_dependencies:
   mobx_codegen: ^0.3.10+1
 
   # Routing
-  auto_route_generator: ^0.3.2
+  auto_route_generator: ^0.4.0
 
 flutter_icons:
   image_path: "assets/icons/ic_launcher.png"

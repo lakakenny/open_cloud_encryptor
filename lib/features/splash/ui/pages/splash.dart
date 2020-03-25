@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
@@ -40,12 +41,12 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
 
   void handleIsLoggedIn({bool isLoggedIn}) {
     if (isLoggedIn) {
-      Router.navigator.pushNamed(Router.homeScreen);
+      ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.homeScreen);
 
       return;
     }
 
-    Router.navigator.pushNamed(Router.loginScreen);
+    ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.loginScreen);
   }
 
   Widget buildFirstScreen(BuildContext context) {

@@ -11,15 +11,23 @@ import 'package:open_cloud_encryptor/features/home/ui/pages/home.dart';
 import 'package:open_cloud_encryptor/features/login/ui/pages/login.dart';
 import 'package:open_cloud_encryptor/features/splash/ui/pages/splash.dart';
 
-class Router {
+abstract class Routes {
   static const homeScreen = '/';
   static const loginScreen = '/login-screen';
   static const splashScreen = '/splash-screen';
-  static final navigator = ExtendedNavigator();
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+}
+
+class Router extends RouterBase {
+  //This will probably be removed in future versions
+  //you should call ExtendedNavigator.ofRouter<Router>() directly
+  static ExtendedNavigatorState get navigator =>
+      ExtendedNavigator.ofRouter<Router>();
+
+  @override
+  Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
-      case Router.homeScreen:
+      case Routes.homeScreen:
         if (hasInvalidArgs<Key>(args)) {
           return misTypedArgsRoute<Key>(args);
         }
@@ -29,17 +37,17 @@ class Router {
               HomeScreen(key: typedArgs),
           settings: settings,
           transitionsBuilder: TransitionsBuilders.slideLeft,
-          transitionDuration: Duration(milliseconds: 200),
+          transitionDuration: const Duration(milliseconds: 200),
         );
-      case Router.loginScreen:
+      case Routes.loginScreen:
         return PageRouteBuilder<dynamic>(
           pageBuilder: (ctx, animation, secondaryAnimation) => LoginScreen(),
           settings: settings,
           transitionsBuilder: TransitionsBuilders.slideLeft,
-          transitionDuration: Duration(milliseconds: 200),
+          transitionDuration: const Duration(milliseconds: 200),
           fullscreenDialog: true,
         );
-      case Router.splashScreen:
+      case Routes.splashScreen:
         return PageRouteBuilder<dynamic>(
           pageBuilder: (ctx, animation, secondaryAnimation) => SplashScreen(),
           settings: settings,

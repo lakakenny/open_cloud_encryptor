@@ -4,7 +4,10 @@ import 'package:flutter/widgets.dart';
 class RouterAuthGuard extends RouteGuard {
   @override
   Future<bool> canNavigate(
-      BuildContext context, String routeName, Object arguments) async {
+    ExtendedNavigatorState navigator,
+    String routeName,
+    Object arguments,
+  ) async {
     // todo implement router guard logic
     return Future.value(true);
   }
