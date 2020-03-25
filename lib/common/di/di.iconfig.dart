@@ -4,7 +4,6 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
-import 'package:open_cloud_encryptor/features/errors/ui/store/errors_store.dart';
 import 'package:logger/logger.dart';
 import 'package:open_cloud_encryptor/common/di/logger_di.dart';
 import 'package:dio/dio.dart';
@@ -17,11 +16,13 @@ import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/services/analytics_service.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/services/pushes_service.dart';
+import 'package:open_cloud_encryptor/features/alerts/data/controllers/alerts_controller.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
 import 'package:open_cloud_encryptor/utils/log/log_it.dart';
 import 'package:open_cloud_encryptor/common/api_client/api_client.dart';
 import 'package:open_cloud_encryptor/common/handlers/error_handler.dart';
+import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/auth/data/api/auth_api.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:open_cloud_encryptor/features/login/data/api/login_api.dart';
@@ -39,7 +40,6 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   final dioDi = _$DioDi();
   final sharedPreferencesDi = _$SharedPreferencesDi();
   final networkInfoDi = _$NetworkInfoDi();
-  g.registerLazySingleton<ErrorsStore>(() => ErrorsStore());
   g.registerLazySingleton<Logger>(() => loggerDi.logger);
   g.registerLazySingleton<Dio>(() => dioDi.dio);
   final sharedPreferences = await sharedPreferencesDi.sharedPreferences;
@@ -51,6 +51,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<AnalyticsService>(() => AnalyticsService());
   g.registerLazySingleton<CrashesService>(() => CrashesService());
   g.registerLazySingleton<PushesService>(() => PushesService());
+  g.registerLazySingleton<AlertsController>(
+      () => AlertsController(g<CrashesService>()));
   g.registerLazySingleton<AuthLocalDataSource>(
       () => AuthLocalDataSource(g<SharedPreferences>()));
   g.registerLazySingleton<LoginLocalDataSource>(
@@ -59,6 +61,8 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
   g.registerLazySingleton<ApiClient>(() => ApiClient(g<Dio>()));
   g.registerLazySingleton<ErrorHandler>(
       () => ErrorHandler(g<CrashesService>()));
+  g.registerLazySingleton<AlertsStore>(
+      () => AlertsStore(g<AlertsController>()));
   g.registerLazySingleton<AuthApi>(() => AuthApi(g<ApiClient>()));
   g.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSource(g<AuthApi>()));
@@ -81,7 +85,7 @@ Future<void> $initGetIt(GetIt g, {String environment}) async {
       () => LoginController(g<LoginRepository>()));
   g.registerLazySingleton<AuthStore>(() => AuthStore(g<AuthController>()));
   g.registerLazySingleton<LoginStore>(
-      () => LoginStore(g<LoginController>(), g<ErrorsStore>()));
+      () => LoginStore(g<LoginController>(), g<AlertsStore>()));
 }
 
 class _$LoggerDi extends LoggerDi {}

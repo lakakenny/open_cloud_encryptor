@@ -1,4 +1,3 @@
-import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';

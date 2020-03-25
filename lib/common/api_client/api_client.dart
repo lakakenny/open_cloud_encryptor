@@ -45,7 +45,7 @@ class ApiClient {
     try {
       return await dio.post(path, data: data);
     } on InternalServerApiError {
-      throw InternalException();
+      throw InternalServerException();
     } on BadRequestApiError catch (error) {
       throw badRequestToModelException(error);
     } on UnauthorizedApiError {
@@ -60,7 +60,7 @@ class ApiClient {
     try {
       return await dio.put(path, data: data);
     } on InternalServerApiError {
-      throw InternalException();
+      throw InternalServerException();
     } on BadRequestApiError catch (error) {
       throw badRequestToModelException(error);
     } on UnauthorizedApiError {
@@ -74,7 +74,7 @@ class ApiClient {
     try {
       return await dio.delete(path);
     } on InternalServerApiError {
-      throw InternalException();
+      throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
     } on DioError {
@@ -86,7 +86,7 @@ class ApiClient {
     try {
       return await dio.get(path);
     } on InternalServerApiError {
-      throw InternalException();
+      throw InternalServerException();
     } on UnauthorizedApiError {
       throw UnauthenticatedException();
     } on DioError {

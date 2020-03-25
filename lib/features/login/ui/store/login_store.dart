@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 import 'package:open_cloud_encryptor/constants/errors.dart';
-import 'package:open_cloud_encryptor/features/errors/ui/store/errors_store.dart';
+import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
@@ -17,18 +17,20 @@ class LoginStore extends _LoginStoreBase with _$LoginStore {
   LoginController loginController;
 
   @override
-  ErrorsStore errorsStore;
+  AlertsStore alertsStore;
 
-  LoginStore(this.loginController, this.errorsStore)
-      : super(loginController, errorsStore);
+  LoginStore(
+    this.loginController,
+    this.alertsStore,
+  ) : super(loginController, alertsStore);
 }
 
 abstract class _LoginStoreBase with Store {
   LoginController loginController;
 
-  ErrorsStore errorsStore;
+  AlertsStore alertsStore;
 
-  _LoginStoreBase(this.loginController, this.errorsStore);
+  _LoginStoreBase(this.loginController, this.alertsStore);
 
   @action
   Future doLogin(LoginRequestModel params) async {
@@ -36,13 +38,14 @@ abstract class _LoginStoreBase with Store {
 
     data.fold(
       (failure) {
-        if (failure is UnauthenticatedException) {
-          errorsStore.setErrorMessage(Errors.INVALID_AUTHENTICATION_MESSAGE);
+       /* if (failure is UnauthenticatedException) {
+          alertsStore.setAlert(Errors.INVALID_AUTHENTICATION_MESSAGE);
 
           return;
-        }
+        }*/
 
-        errorsStore.setException(failure);
+        // todo
+        alertsStore.setException(failure);
       },
       (res) {
         if (res.token_id.isNotEmpty) {

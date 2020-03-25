@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
-import 'package:open_cloud_encryptor/features/errors/ui/pages/errors.dart';
-import 'package:open_cloud_encryptor/features/errors/ui/store/errors_store.dart';
+import 'package:open_cloud_encryptor/features/alerts/ui/pages/alerts.dart';
+import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/ui/store/login_store.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 import 'package:open_cloud_encryptor/constants/env.dart';
@@ -24,8 +24,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<ErrorsStore>(
-          create: (_) => getIt<ErrorsStore>(),
+        Provider<AlertsStore>(
+          create: (_) => getIt<AlertsStore>(),
         ),
         Provider<AuthStore>(
           create: (_) => getIt<AuthStore>(),
@@ -40,12 +40,12 @@ class App extends StatelessWidget {
         builder: (BuildContext context, Widget widget) {
           setErrorBuilder();
 
-          return Row(
+          return Column(
             children: <Widget>[
               Expanded(
                 child: widget,
               ),
-              ErrorsScreen(),
+              AlertsScreen(),
             ],
           );
         },
