@@ -9,7 +9,6 @@ import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
-import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 
 part 'login_store.g.dart';
 
@@ -40,18 +39,14 @@ abstract class _LoginStoreBase with Store {
 
     data.fold(
       (failure) {
-        /* if (failure is UnauthenticatedException) {
+        if (failure is UnauthenticatedException) {
           alertsStore.setAlert(Errors.INVALID_AUTHENTICATION_MESSAGE);
 
           return;
-        }*/
-
-        // todo
-        alertsStore.setException(failure);
+        }
       },
       (res) {
         if (res.token_id.isNotEmpty) {
-          //Routes.navigator.pushNamed(Routes.homeScreen);
           ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.homeScreen);
 
           return;

@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/features/alerts/data/controllers/alerts_controller.dart';
 import 'package:open_cloud_encryptor/features/alerts/data/models/alerts_model.dart';
-import 'package:open_cloud_encryptor/utils/log/log.dart';
 
 part 'alerts_store.g.dart';
 
@@ -23,19 +22,21 @@ abstract class _AlertsStoreBase with Store {
   ObservableList<AlertsModel> alertsList = ObservableList<AlertsModel>();
 
   @action
-  Future setAlert(
+  void setAlert(
     String message, {
     String title,
-    AlertsTypeEnum type,
-    AlertsPopupEnum popupType,
+    AlertsTypeEnum type = AlertsTypeEnum.ERROR,
+    AlertsPopupEnum popupType = AlertsPopupEnum.FLUSHBAR,
     StackTrace stackTrace,
-  }) async {
-    final alert = alertsController.setAlert(
+    Duration duration,
+  }) {
+    final alert = alertsController.getAlert(
       message,
       title: title,
       type: type,
       stackTrace: stackTrace,
       popupType: popupType,
+      duration: duration,
     );
 
     alertsList.add(alert);
@@ -43,7 +44,7 @@ abstract class _AlertsStoreBase with Store {
 
   @action
   void setException(Exception exception, {StackTrace stackTrace}) {
-    final alert = alertsController.setException(
+    final alert = alertsController.getException(
       exception,
       stackTrace: stackTrace,
     );
@@ -52,7 +53,7 @@ abstract class _AlertsStoreBase with Store {
   }
 
   @action
-  void removeAlert(int index) {
-    alertsList.removeAt(index);
+  void removeAlert(int generatedTime) {
+    alertsList.removeWhere((a) => a.generatedTime == generatedTime);
   }
 }

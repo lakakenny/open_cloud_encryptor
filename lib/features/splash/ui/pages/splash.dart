@@ -6,6 +6,7 @@ import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
 import 'package:open_cloud_encryptor/features/auth/ui/store/auth_store.dart';
 import 'package:open_cloud_encryptor/features/splash/ui/widgets/splash_loading.dart';
 import 'package:open_cloud_encryptor/constants/strings.dart';
+import 'package:open_cloud_encryptor/widgets/common_widget.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,8 +36,10 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
   }
 
   @override
-  Future<void> initApp() async {
+  Future<void> onInitApp() async {
     await _authStore.doLogin();
+
+    return super.onInitApp();
   }
 
   void handleIsLoggedIn({bool isLoggedIn}) {
@@ -58,7 +61,9 @@ class _SplashScreenState extends StoreSFWidget<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: buildFirstScreen(context),
+      body: CommonWidget(
+        child: buildFirstScreen(context),
+      ),
     );
   }
 }

@@ -28,13 +28,8 @@ class Router extends RouterBase {
     final args = settings.arguments;
     switch (settings.name) {
       case Routes.homeScreen:
-        if (hasInvalidArgs<Key>(args)) {
-          return misTypedArgsRoute<Key>(args);
-        }
-        final typedArgs = args as Key;
         return PageRouteBuilder<dynamic>(
-          pageBuilder: (ctx, animation, secondaryAnimation) =>
-              HomeScreen(key: typedArgs),
+          pageBuilder: (ctx, animation, secondaryAnimation) => HomeScreen(),
           settings: settings,
           transitionsBuilder: TransitionsBuilders.slideLeft,
           transitionDuration: const Duration(milliseconds: 200),

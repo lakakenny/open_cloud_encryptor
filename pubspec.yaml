@@ -69,6 +69,8 @@ dependencies:
 
   flash: ^1.2.3
 
+  after_layout: ^1.0.7+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

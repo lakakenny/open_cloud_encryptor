@@ -18,11 +18,13 @@ class AlertsModel {
   final AlertsTypeEnum type;
   final AlertsPopupEnum popupType;
   final int generatedTime = DateTime.now().microsecondsSinceEpoch;
+  final Duration duration;
 
   AlertsModel({
     @required this.body,
     @required this.title,
     @required this.popupType,
     @required this.type,
+    this.duration = const Duration(seconds: 7),
   });
 }

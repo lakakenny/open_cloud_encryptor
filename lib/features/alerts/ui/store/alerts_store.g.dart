@@ -26,23 +26,28 @@ mixin _$AlertsStore on _AlertsStoreBase, Store {
     }, _$alertsListAtom, name: '${_$alertsListAtom.name}_set');
   }
 
-  final _$setAlertAsyncAction = AsyncAction('setAlert');
-
-  @override
-  Future setAlert(String message,
-      {String title,
-      AlertsTypeEnum type,
-      AlertsPopupEnum popupType,
-      StackTrace stackTrace}) {
-    return _$setAlertAsyncAction.run(() => super.setAlert(message,
-        title: title,
-        type: type,
-        popupType: popupType,
-        stackTrace: stackTrace));
-  }
-
   final _$_AlertsStoreBaseActionController =
       ActionController(name: '_AlertsStoreBase');
+
+  @override
+  void setAlert(String message,
+      {String title,
+      AlertsTypeEnum type = AlertsTypeEnum.ERROR,
+      AlertsPopupEnum popupType = AlertsPopupEnum.FLUSHBAR,
+      StackTrace stackTrace,
+      Duration duration}) {
+    final _$actionInfo = _$_AlertsStoreBaseActionController.startAction();
+    try {
+      return super.setAlert(message,
+          title: title,
+          type: type,
+          popupType: popupType,
+          stackTrace: stackTrace,
+          duration: duration);
+    } finally {
+      _$_AlertsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setException(Exception exception, {StackTrace stackTrace}) {
@@ -55,10 +60,10 @@ mixin _$AlertsStore on _AlertsStoreBase, Store {
   }
 
   @override
-  void removeAlert(int index) {
+  void removeAlert(int generatedTime) {
     final _$actionInfo = _$_AlertsStoreBaseActionController.startAction();
     try {
-      return super.removeAlert(index);
+      return super.removeAlert(generatedTime);
     } finally {
       _$_AlertsStoreBaseActionController.endAction(_$actionInfo);
     }

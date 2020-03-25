@@ -16,21 +16,17 @@ class AlertsController {
     this.crashesService,
   );
 
-  AlertsModel setAlert(
+  AlertsModel getAlert(
     String body, {
     String title,
     AlertsTypeEnum type = AlertsTypeEnum.ERROR,
     AlertsPopupEnum popupType = AlertsPopupEnum.FLUSHBAR,
     StackTrace stackTrace,
+    Duration duration,
   }) {
     String _title;
 
     switch (type) {
-      case AlertsTypeEnum.ERROR:
-        _title = 'Oops... Some error occured!';
-
-        log.error(_title, error: body, stackTrace: stackTrace);
-        break;
       case AlertsTypeEnum.INFO:
         _title = 'Info!';
 
@@ -43,7 +39,12 @@ class AlertsController {
         break;
       case AlertsTypeEnum.SUCCESS:
         _title = 'Great!';
+        break;
+      case AlertsTypeEnum.ERROR:
+      default:
+        _title = 'Oops... Some error occured!';
 
+        log.error(_title, error: body, stackTrace: stackTrace);
         break;
     }
 
@@ -52,10 +53,11 @@ class AlertsController {
       title: _title,
       type: type,
       popupType: popupType,
+      duration: duration,
     );
   }
 
-  AlertsModel setException(
+  AlertsModel getException(
     Exception exception, {
     @required StackTrace stackTrace,
   }) {
@@ -66,7 +68,7 @@ class AlertsController {
       // final di = await AppDi.instance;
       // await di.accountsRepository.logOut();
 
-      _body = Errors.INVALID_API_MESSAGE;
+      _body = Errors.INVALID_UNAUTHENTICATED_MESSAGE;
 
       ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.loginScreen);
     } else if (exception is ModelException && exception.generic != null) {
@@ -75,16 +77,14 @@ class AlertsController {
       _body = Errors.INVALID_API_MESSAGE;
     } else if (exception is InternalServerException) {
       _body = Errors.INTERNAL_SERVER_MESSAGE;
-    } else if (exception is UnauthenticatedException) {
-      _body = Errors.INVALID_UNAUTHENTICATED_MESSAGE;
     } else if (exception is CacheException) {
       _body = Errors.CACHE_FAILURE_MESSAGE;
-    }
+    } else {
+      _body = Errors.UNKNOWN_FAILURE_MESSAGE;
 
-    if (_body == null) {
       crashesService.nonFatalError(_body, stackTrace);
     }
 
-    return setAlert(_body);
+    return getAlert(_body);
   }
 }

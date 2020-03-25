@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
 import 'package:open_cloud_encryptor/features/login/ui/store/login_store.dart';
 import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
+import 'package:open_cloud_encryptor/widgets/common_widget.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -29,19 +30,21 @@ class _LoginScreenState extends StoreSFWidget<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              onPressed: () {
-                doLogin(
-                  LoginRequestModel(username: 'users', password: 'password'),
-                );
-              },
-              child: const Text('Login'),
-            ),
-          ],
+      body: CommonWidget(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                onPressed: () {
+                  doLogin(
+                    LoginRequestModel(username: 'users', password: 'password'),
+                  );
+                },
+                child: const Text('Login'),
+              ),
+            ],
+          ),
         ),
       ),
     );

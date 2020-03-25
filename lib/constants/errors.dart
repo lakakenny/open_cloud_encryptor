@@ -14,4 +14,6 @@ class Errors {
 
   static const String INVALID_UNAUTHENTICATED_MESSAGE =
       'Something went wrong while authenticating your account. Try signing in back again.';
+
+  static const String UNKNOWN_FAILURE_MESSAGE = 'Some unknown error occured';
 }
