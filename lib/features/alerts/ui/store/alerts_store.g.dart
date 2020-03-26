@@ -60,10 +60,10 @@ mixin _$AlertsStore on _AlertsStoreBase, Store {
   }
 
   @override
-  void removeAlert(int generatedTime) {
+  void removeAlert({int generatedTime, AlertsModel alert}) {
     final _$actionInfo = _$_AlertsStoreBaseActionController.startAction();
     try {
-      return super.removeAlert(generatedTime);
+      return super.removeAlert(generatedTime: generatedTime, alert: alert);
     } finally {
       _$_AlertsStoreBaseActionController.endAction(_$actionInfo);
     }

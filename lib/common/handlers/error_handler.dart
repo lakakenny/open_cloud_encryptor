@@ -1,12 +1,12 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
+import 'package:open_cloud_encryptor/helpers/navigation_helper.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/utils/log/log.dart';
-import 'package:open_cloud_encryptor/widgets/dialogs.dart';
+import 'package:open_cloud_encryptor/widgets/dialogs/dialogs.dart';
 
 // todo make sure this works
 @lazySingleton
@@ -27,7 +27,7 @@ class ErrorHandler {
       // final di = await AppDi.instance;
       // await di.accountsRepository.logOut();
 
-      ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.loginScreen);
+      navigateToRoute(Routes.loginScreen);
     }
     // todo do we need this
     else if (error is ModelException &&

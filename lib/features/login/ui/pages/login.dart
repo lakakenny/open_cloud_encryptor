@@ -3,7 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
 import 'package:open_cloud_encryptor/features/login/ui/store/login_store.dart';
 import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
-import 'package:open_cloud_encryptor/widgets/common_widget.dart';
+import 'package:open_cloud_encryptor/widgets/common_widget/common_widget.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {

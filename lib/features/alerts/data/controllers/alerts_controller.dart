@@ -1,10 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
 import 'package:open_cloud_encryptor/common/router/router.gr.dart';
 import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/features/alerts/data/models/alerts_model.dart';
+import 'package:open_cloud_encryptor/helpers/navigation_helper.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/utils/log/log.dart';
 
@@ -70,7 +70,7 @@ class AlertsController {
 
       _body = Errors.INVALID_UNAUTHENTICATED_MESSAGE;
 
-      ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.loginScreen);
+      navigateToRoute(Routes.loginScreen);
     } else if (exception is ModelException && exception.generic != null) {
       _body = exception.generic;
     } else if (exception is ApiException) {

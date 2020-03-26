@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/di/di.dart';
+import 'package:open_cloud_encryptor/features/alerts/data/models/alerts_model.dart';
 import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
+import 'package:open_cloud_encryptor/helpers/navigation_helper.dart';
 import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
-import 'package:open_cloud_encryptor/widgets/flash_helper.dart';
+import 'package:open_cloud_encryptor/helpers/flash_helper.dart';
 import 'package:provider/provider.dart';
 
 class AlertsScreen extends StatefulWidget {
@@ -16,6 +18,10 @@ class _AlertsScreenState extends StoreSFWidget<AlertsScreen> {
 
   FlashHelper get _flashHelper => getIt<FlashHelper>();
 
+  List<ReactionDisposer> _disposers;
+
+  final List<AlertsModel> _activeAlerts = [];
+
   @override
   void initState() {
     super.initState();
@@ -26,6 +32,17 @@ class _AlertsScreenState extends StoreSFWidget<AlertsScreen> {
     super.didChangeDependencies();
 
     _alertsStore ??= Provider.of<AlertsStore>(context);
+
+    _disposers ??= [
+      reaction(
+        (_) => _alertsStore.alertsList.iterator,
+        (alertsList) {
+          if (isCurrentScreen(context)) {
+            buildSnackbar();
+          }
+        },
+      ),
+    ];
   }
 
   @override
@@ -42,58 +59,54 @@ class _AlertsScreenState extends StoreSFWidget<AlertsScreen> {
     return super.onInitApp();
   }
 
-  void _showSnackbar(
-    BuildContext context, {
-    @required String message,
-    @required String title,
-    @required int generatedTime,
-  }) {
-    const _duration = Duration(seconds: 3);
-
-    Future.delayed(_duration, () => {unsetSnackbarList(generatedTime)});
-
-    _flashHelper.snackBar(
-      context,
-      message: message,
-      title: title,
-      duration: _duration,
-    );
-  }
-
-  Future<void> unsetSnackbarList(int index) async {
-    _alertsStore.removeAlert(index);
-  }
-
-  // todo not working
-  Future<void> executeAfterBuild() async {
+  void buildSnackbar() {
     for (var i = 0; i < _alertsStore.alertsList.length; i++) {
       final item = _alertsStore.alertsList[i];
 
+      if (_activeAlerts.contains(item)) {
+        continue;
+      }
+
       _showSnackbar(
         context,
-        message: item.body,
-        title: item.title,
-        generatedTime: item.generatedTime,
+        item,
       );
     }
   }
 
+  void _showSnackbar(
+    BuildContext context,
+    AlertsModel alertItem,
+  ) {
+    final _flashInstance = _flashHelper.snackBar(
+      context,
+      message: alertItem.body,
+      title: alertItem.title,
+      duration: alertItem.duration,
+    );
+
+    _activeAlerts.add(alertItem);
+
+    _flashInstance.then((value) {
+      if (value == null) {
+        _activeAlerts.remove(alertItem);
+
+        unsetSnackbarList(alertItem);
+      }
+    });
+  }
+
+  Future<void> unsetSnackbarList(
+    AlertsModel alertItem,
+  ) async {
+    _alertsStore.removeAlert(alert: alertItem);
+  }
+
   @override
   Widget build(BuildContext context) {
-    executeAfterBuild();
-
     return Container(
       width: 0.0,
       height: 0.0,
-      child: Observer(builder: (_) {
-        final _alertsList = _alertsStore.alertsList;
-
-        return ListView.builder(
-            itemCount: _alertsList.length,
-            itemBuilder: (_context, index) {
-              return Container(width: 0.0, height: 0.0);
-            });
-      }),
     );
   }
 }

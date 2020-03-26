@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 enum AlertsTypeEnum {
@@ -12,7 +13,7 @@ enum AlertsPopupEnum {
   WIDGET,
 }
 
-class AlertsModel {
+class AlertsModel extends Equatable {
   final String body;
   final String title;
   final AlertsTypeEnum type;
@@ -27,4 +28,14 @@ class AlertsModel {
     @required this.type,
     this.duration = const Duration(seconds: 7),
   });
+
+  @override
+  List<Object> get props => [
+        body,
+        title,
+        popupType,
+        type,
+        generatedTime,
+        duration,
+      ];
 }

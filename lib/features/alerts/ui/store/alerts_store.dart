@@ -53,7 +53,13 @@ abstract class _AlertsStoreBase with Store {
   }
 
   @action
-  void removeAlert(int generatedTime) {
-    alertsList.removeWhere((a) => a.generatedTime == generatedTime);
+  void removeAlert({int generatedTime, AlertsModel alert}) {
+    if (generatedTime != null) {
+      alertsList.removeWhere((a) => a.generatedTime == generatedTime);
+    }
+
+    if (alert != null) {
+      alertsList.remove(alert);
+    }
   }
 }

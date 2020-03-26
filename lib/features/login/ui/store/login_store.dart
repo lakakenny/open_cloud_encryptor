@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:open_cloud_encryptor/common/exceptions/exceptions.dart';
@@ -9,6 +8,7 @@ import 'package:open_cloud_encryptor/constants/errors.dart';
 import 'package:open_cloud_encryptor/features/alerts/ui/store/alerts_store.dart';
 import 'package:open_cloud_encryptor/features/login/data/controllers/login_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/models/login_request_model.dart';
+import 'package:open_cloud_encryptor/helpers/navigation_helper.dart';
 
 part 'login_store.g.dart';
 
@@ -47,7 +47,7 @@ abstract class _LoginStoreBase with Store {
       },
       (res) {
         if (res.token_id.isNotEmpty) {
-          ExtendedNavigator.ofRouter<Router>().pushNamed(Routes.homeScreen);
+          navigateToRoute(Routes.homeScreen);
 
           return;
         }

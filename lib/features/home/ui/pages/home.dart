@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:open_cloud_encryptor/widget_extends/store_widget.dart';
-import 'package:open_cloud_encryptor/widgets/common_widget.dart';
+import 'package:open_cloud_encryptor/widgets/common_widget/common_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

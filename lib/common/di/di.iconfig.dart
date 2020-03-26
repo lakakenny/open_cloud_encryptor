@@ -16,7 +16,7 @@ import 'package:open_cloud_encryptor/common/network/network_info.dart';
 import 'package:open_cloud_encryptor/services/analytics_service.dart';
 import 'package:open_cloud_encryptor/services/crashes_service.dart';
 import 'package:open_cloud_encryptor/services/pushes_service.dart';
-import 'package:open_cloud_encryptor/widgets/flash_helper.dart';
+import 'package:open_cloud_encryptor/helpers/flash_helper.dart';
 import 'package:open_cloud_encryptor/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:open_cloud_encryptor/features/alerts/data/controllers/alerts_controller.dart';
 import 'package:open_cloud_encryptor/features/login/data/data_sources/login_local_data_source.dart';
